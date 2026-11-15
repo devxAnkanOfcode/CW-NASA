@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CropSwitch — Farmer & Agronomist Command Center</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Leaflet Map CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    
+    <!-- Dashboard Core CSS -->
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+    <div class="app-shell">
+        <!-- ==========================================
+             LEFT NAVIGATION SIDEBAR
+             ========================================== -->
+        <aside class="app-sidebar" id="appSidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <img src="cropswitch-logo-light.png" alt="CropSwitch">
+                </a>
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-section-title">Operations</div>
+                <a href="#overview" class="nav-item active">
+                    <span class="nav-item-icon">📊</span>
+                    <span>Daily Overview</span>
+                </a>
+                <a href="#farms" class="nav-item">
+                    <span class="nav-item-icon">🏡</span>
+                    <span>My Farms</span>
+                    <span class="nav-badge" id="sidebarFarmCount">1</span>
+                </a>
+                <a href="#fields" class="nav-item">
+                    <span class="nav-item-icon">🌾</span>
+                    <span>My Fields</span>
+                    <span class="nav-badge" id="sidebarFieldCount">0</span>
+                </a>
+                <a href="#satellite-studio" class="nav-item">
+                    <span class="nav-item-icon">🛰️</span>
+                    <span>Satellite Studio</span>
+                </a>
+                <a href="#calendar" class="nav-item">
+                    <span class="nav-item-icon">📅</span>
+                    <span>Task Calendar</span>
+                    <span class="nav-badge" id="sidebarTaskCount">0</span>
+                </a>
+
+                <div class="nav-section-title">Management</div>
+                <a href="#financials" class="nav-item">
+                    <span class="nav-item-icon">💰</span>
+                    <span>Farm Economics</span>
+                </a>
+                <a href="#sensors" class="nav-item">
+                    <span class="nav-item-icon">📡</span>
+                    <span>IoT Sensors</span>
+                </a>
+                <a href="javascript:void(0)" class="nav-item" id="sidebarReportBtn">
+                    <span class="nav-item-icon">📑</span>
+                    <span>Agronomy Report</span>
+                </a>
+
+                <div class="nav-section-title">System</div>
+                <a href="javascript:void(0)" class="nav-item" id="sidebarSettingsBtn">
+                    <span class="nav-item-icon">⚙️</span>
+                    <span>Farm Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="farmer-profile-card">
+                    <div class="farmer-avatar" id="userAvatar">--</div>
+                    <div class="farmer-info">
+                        <span class="farmer-name" id="userNameDisplay">Farm Operator</span>
+                        <span class="farmer-farm" id="userFarmDisplay">Configure Farm</span>
+                    </div>
+                </div>
+                <button type="button" class="sidebar-signout-btn" id="signOutBtn">
+                    <span>🚪</span>
+                    <span>Sign Out</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- ==========================================
+             MAIN CONTENT WRAPPER
+             ========================================== -->
+        <main class="app-main">
+            <!-- TOPBAR -->
+            <header class="app-topbar">
+                <div class="topbar-left">
+                    <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Toggle navigation">
+                        ☰
+                    </button>
+                    <div class="field-selector-wrap">
+                        <div class="field-select-icon">🌱</div>
+                        <select class="field-select" id="topbarFieldSelect">
+                            <option value="">No fields registered</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+                    <div class="telemetry-pill">
+                        <span class="live-dot"></span>
+                        <span id="topbarTelemetryText">Connecting live telemetry...</span>
+                    </div>
+                    <button type="button" class="topbar-btn outline" id="openSettingsBtn" title="Farm Settings">
+                        <span>⚙️</span>
+                        <span>Settings</span>
+                    </button>
+                    <button type="button" class="topbar-btn outline" id="openReportBtn">
+                        <span>📄</span>
+                        <span>Export Agronomy PDF</span>
+                    </button>
+                    <button type="button" class="topbar-btn primary" id="openAddTaskBtn">
+                        <span>+</span>
+                        <span>New Task</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- WORKSPACE SECTIONS -->
+            <div class="workspace-content">
+                
+                <!-- 1. DAILY OPERATIONAL BRIEFING -->
+                <section id="overview">
+                    <div class="dash-section-header">
+                        <div class="dash-section-title-wrap">
+                            <h3>🌤️ Daily Operational Briefing</h3>
+                            <p class="dash-section-sub">Autonomous NASA SMAP, GFS & Open-Meteo live field microclimate telemetry</p>
+                        </div>
+                        <span style="font-size: 12px; color: var(--text-muted); font-weight: 600;" id="briefLastUpdated">Connecting live satellite telemetry...</span>
+                    </div>
+
+                    <div class="daily-brief-grid">
+                        <!-- Spray Window -->
+                        <div class="brief-card">
+                            <div class="brief-card-top">
+                                <span class="brief-label">Field Spray Window</span>
+                                <span class="brief-icon">💨</span>
+                            </div>
+                            <div class="brief-status" id="briefSprayStatus">Evaluating...</div>
+                            <p class="brief-detail" id="briefSprayDetail">Live wind, gusts, and rain probability telemetry...</p>
+                            <span class="brief-badge optimal" id="briefSprayBadge">Checking</span>
+                        </div>
+
+                        <!-- Soil Trafficability -->
+                        <div class="brief-card">
+                            <div class="brief-card-top">
+                                <span class="brief-label">Soil Compaction Risk</span>
+                                <span class="brief-icon">🚜</span>
+                            </div>
+                            <div class="brief-status" id="briefTractorStatus">Evaluating...</div>
+                            <p class="brief-detail" id="briefTractorDetail">Reading volumetric topsoil moisture & field trafficability...</p>
+                            <span class="brief-badge good" id="briefTractorBadge">Checking</span>
+                        </div>
+
+                        <!-- VPD / Disease Pressure -->
+                        <div class="brief-card">
+                            <div class="brief-card-top">
+                                <span class="brief-label">Vapor Deficit (VPD)</span>
+                                <span class="brief-icon">🔬</span>
+                            </div>
+                            <div class="brief-status" id="briefVpdStatus">Evaluating...</div>
+                            <p class="brief-detail" id="briefVpdDetail">Reading atmospheric vapor pressure deficit & fungal spore risk...</p>
+                            <span class="brief-badge info" id="briefVpdBadge">Checking</span>
+                        </div>
+
+                        <!-- Water Balance & ETc -->
+                        <div class="brief-card">
+                            <div class="brief-card-top">
+                                <span class="brief-label">Weekly Moisture Balance</span>
+                                <span class="brief-icon">💧</span>
+                            </div>
+                            <div class="brief-status" id="briefMoistureStatus">Evaluating...</div>
+                            <p class="brief-detail" id="briefMoistureDetail">Measuring cumulative precipitation vs evapotranspiration (ETc)...</p>
+                            <span class="brief-badge optimal" id="briefMoistureBadge">Checking</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 2. "MY FARMS" LANDHOLDINGS & ENTERPRISES -->
+                <section id="farms">
+                    <div class="dash-section-header">
+                        <div class="dash-section-title-wrap">
+                            <h3>🏡 My Farms & Landholdings</h3>
+                            <p class="dash-section-sub">Overview of your registered farming enterprises, agricultural headquarters, and field distributions</p>
+                        </div>
+                        <button type="button" class="topbar-btn outline" id="addNewFarmBtn">+ Add New Farm</button>
+                    </div>
+
+                    <div class="farms-grid" id="farmsGrid">
+                        <!-- Dynamically populated from user's registered farms -->
+                        <div class="field-card add-card" id="addFarmCardBtn">
+                            <div class="add-card-icon">+</div>
+                            <strong>Register New Farm</strong>
+                            <p>Add a new farm enterprise, ranch, or landholding</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 3. "MY FIELDS" FIELD MANAGEMENT -->
+                <section id="fields">
+                    <div class="dash-section-header">
+                        <div class="dash-section-title-wrap">
+                            <h3>🌾 Managed Fields & Rotations</h3>
+                            <p class="dash-section-sub">Active field boundaries, crop phenology, and satellite telemetry</p>
+                        </div>
+                        <button type="button" class="topbar-btn outline" id="addNewFieldBtn">+ Add New Field</button>
+                    </div>
+
+                    <div class="fields-grid" id="fieldsGrid">
+                        <!-- Dynamically populated with ONLY the user's real fields -->
+                        <div class="field-card add-card" id="addFieldCardBtn">
+                            <div class="add-card-icon">+</div>
+                            <strong>Register New Field</strong>
+                            <p>Enter coordinates, use GPS, or draw boundaries on satellite</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 3. SATELLITE STUDIO & FIELD OBSERVATORY -->
+                <section id="satellite-studio">
+                    <div class="dash-section-header">
+                        <div class="dash-section-title-wrap">
+                            <h3>🛰️ Satellite Studio & Field Observatory</h3>
+                            <p class="dash-section-sub">High-resolution Earth observation with parcel boundary overlays</p>
+                        </div>
+                        <div style="font-size: 12px; color: var(--text-secondary); font-weight: 500;">
+                            ESA Sentinel-2 Multispectral & Esri World Imagery
+                        </div>
+                    </div>
+
+                    <div class="studio-card">
+                        <div class="studio-toolbar">
+                            <div class="studio-layer-group">
+                                <span style="font-size: 12px; font-weight: 700; color: var(--text-muted); margin-right: 4px;">LAYER:</span>
+                                <button type="button" class="studio-layer-btn active" data-layer="esri">Esri High-Res Satellite</button>
+                                <button type="button" class="studio-layer-btn" data-layer="osm">OpenStreetMap Road/Topo</button>
+                                <button type="button" class="studio-layer-btn" data-layer="usgs">USGS Topographic</button>
+                                <button type="button" class="studio-layer-btn" data-layer="carto">Carto Dark Matter</button>
+                            </div>
+                            <div style="display: flex; gap: 8px;">
+                                <button type="button" class="topbar-btn outline" id="recenterMapBtn" style="padding: 5px 10px; font-size: 11.5px;">🎯 Recenter Field</button>
+                                <button type="button" class="topbar-btn outline" id="toggleBoundaryBtn" style="padding: 5px 10px; font-size: 11.5px;">🔲 Toggle Polygon</button>
+                                <button type="button" class="topbar-btn outline" id="deleteActiveFieldBtn" style="padding: 5px 10px; font-size: 11.5px; color:#EF4444; border-color:rgba(239,68,68,0.35);" title="Delete current field parcel">🗑️ Remove Field</button>
+                            </div>
+                        </div>
+
+                        <!-- Leaflet Map Container -->
+                        <div id="portalMapContainer" class="studio-map-frame"></div>
+
+                        <div class="studio-statusbar">
+                            <div id="studioCoordsText">
+                                📍 Active Parcel: <strong>No Field Selected</strong> · Add a parcel to view coordinates
+                            </div>
+                            <div>
+                                Sentinel-2 Cloud Cover: <strong style="color: #4ADE80;">3.8% (Clear)</strong> · Resolution: <strong>10m/px</strong>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 4. OPERATIONS CALENDAR & TASKS -->
+                <section id="calendar">
+                    <div class="dash-section-header">
+                        <div class="dash-section-title-wrap">
+                            <h3>📅 Operations Calendar & Field Tasks</h3>
+                            <p class="dash-section-sub">Synchronized spray schedules, scouting notes, and variable rate applications</p>
+                        </div>
+                    </div>
+
+                    <div class="calendar-tasks-grid">
+                        <!-- Tasks List -->
+                        <div class="tasks-card">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <h4 style="font-size: 16px; font-weight: 700; color: var(--green-dark);">Upcoming Agronomic Tasks</h4>
+                                <span style="font-size: 12px; color: var(--text-muted); font-weight: 600;" id="taskCounterText">0 Pending · 0 Completed</span>
+                            </div>
+
+                            <div class="task-list" id="taskList">
+                                <!-- Dynamically populated from user tasks -->
+                            </div>
+
+                            <!-- Quick Task Add Form -->
+                            <form class="task-quick-add" id="taskQuickForm">
+                                <input type="text" class="task-input" id="taskQuickInput" placeholder="Add a new task (e.g. 'Scout field for foliar rust')..." required>
+                                <button type="submit" class="topbar-btn primary" style="padding: 8px 16px;">Add</button>
+                            </form>
+                        </div>
+
+                        <!-- 5-Day Weather & Spray Forecast -->
+                        <div class="weather-calendar-widget">
+                            <h4 style="font-size: 16px; font-weight: 700; color: var(--green-dark); margin-bottom: 2px;">5-Day Agronomic Forecast</h4>
+                            <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;" id="forecastLocationText">Loading live field forecast...</p>
+
+                            <div class="mini-forecast-row" id="forecastDaysRow">
+                                <!-- Populated dynamically from Open-Meteo -->
+                            </div>
+
+                            <div style="background: var(--cream); border-radius: var(--radius-sm); padding: 12px; margin-top: auto;">
+                                <div style="display:flex; justify-content:space-between; font-size:12px; font-weight:600; margin-bottom:4px;">
+                                    <span>GDD Accumulation (Base 50°F)</span>
+                                    <strong style="color:var(--green-mid);" id="dashGddRate">+0.0 GDD/day</strong>
+                                </div>
+                                <div style="display:flex; justify-content:space-between; font-size:11.5px; color:var(--text-secondary);">
+                                    <span>Season Cumulative:</span>
+                                    <strong id="dashGddCumulative">Calculating...</strong>
+                                </div>
+                            </div>
+<!-- NASA POWER Historical Environmental Data -->
+<div class="nasa-history-panel">
+    <div class="nasa-history-heading">
+        <div>
+            <h4>NASA POWER Historical Data</h4>
+            <p id="nasaPowerStatus">Waiting for selected parcel...</p>
+        </div>
+        <span class="nasa-source-tag">NASA POWER</span>
+    </div>
+
+    <div class="nasa-history-grid">
+        <div class="nasa-history-metric">
+            <span>Average Temperature</span>
+            <strong id="nasaPowerTemp">--</strong>
+        </div>
+        <div class="nasa-history-metric">
+            <span>Average Humidity</span>
+            <strong id="nasaPowerHumidity">--</strong>
+        </div>
+        <div class="nasa-history-metric">
+            <span>Total Rainfall</span>
+            <strong id="nasaPowerRain">--</strong>
+        </div>
+        <div class="nasa-history-metric">
+            <span>Average Wind Speed</span>
+            <strong id="nasaPowerWind">--</strong>
+        </div>
+    </div>
+
+    <p class="nasa-history-footnote">
+        Daily historical environmental data for the selected coordinates.
+        These are NASA POWER gridded estimates, not live field-sensor measurements.
+    </p>
+</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5. FARM ECONOMICS & COMMODITY TICKER -->
+                <section id="financials">
+                    <div class="dash-section-header">
+                        <div class="dash-section-title-wrap">
+                            <h3>💰 Farm Economics & Cash Flow Ticker</h3>
+                            <p class="dash-section-sub">Historical USDA annual crop prices, input cost references, and ROI yield simulator</p>
+                        </div>
+                    </div>
+
+                    <!-- Commodity Ticker Bar -->
+                    <div class="ticker-bar">
+                        <div class="ticker-item">
+                            <span class="ticker-crop">CORN (USDA NASS):</span>
+                            <span class="ticker-price">$4.48 / bu</span>
+                            <span class="ticker-change up">▲ +$0.06 (+1.3%)</span>
+                        </div>
+                        <div class="ticker-item">
+                            <span class="ticker-crop">SOYBEANS (USDA NASS):</span>
+                            <span class="ticker-price">$11.84 / bu</span>
+                            <span class="ticker-change up">▲ +$0.14 (+1.2%)</span>
+                        </div>
+                        <div class="ticker-item">
+                            <span class="ticker-crop">WHEAT (USDA NASS):</span>
+                            <span class="ticker-price">$5.92 / bu</span>
+                            <span class="ticker-change down">▼ -$0.04 (-0.7%)</span>
+                        </div>
+                        <div class="ticker-item">
+                            <span class="ticker-crop">UREA (46-0-0):</span>
+                            <span class="ticker-price">$485 / ton</span>
+                            <span class="ticker-change down">▼ Steady</span>
+                        </div>
+                        <div class="ticker-item">
+                            <span class="ticker-crop">OFF-ROAD DIESEL:</span>
+                            <span class="ticker-price">$3.42 / gal</span>
+                            <span class="ticker-change down">▼ -$0.08</span>
+                        </div>
+                    </div>
+
+                    <div class="economics-grid">
+                        <!-- Cost Breakdown Card -->
+                        <div class="econ-card">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <h4 style="font-size: 16px; font-weight: 700; color: var(--green-dark);" id="econBudgetName">Field Operating Budget</h4>
+                                <span style="font-size: 12px; font-weight: 600; color: var(--text-muted);" id="econBudgetSub">Configure or select a field</span>
+                            </div>
+
+                            <div class="cost-breakdown-list" id="econCostList">
+                                <div class="cost-row">
+                                    <span>Seed & Trait Licensing</span>
+                                    <strong id="econCostSeed">$118.00 / ac</strong>
+                                </div>
+                                <div class="cost-row">
+                                    <span>Fertilizer & Nutrition</span>
+                                    <strong id="econCostFert">$164.50 / ac</strong>
+                                </div>
+                                <div class="cost-row">
+                                    <span>Crop Protection (Herbicides/Fungicides)</span>
+                                    <strong id="econCostChem">$46.00 / ac</strong>
+                                </div>
+                                <div class="cost-row">
+                                    <span>Machinery, Fuel & Custom Work</span>
+                                    <strong id="econCostFuel">$54.00 / ac</strong>
+                                </div>
+                                <div class="cost-row">
+                                    <span>Crop Insurance & Land Charge / Rent</span>
+                                    <strong id="econCostLand">$260.00 / ac</strong>
+                                </div>
+                                <div class="cost-row total">
+                                    <span>Total Break-Even Cost</span>
+                                    <span style="color: var(--green-dark);" id="econCostTotal">$642.50 / ac</span>
+                                </div>
+                            </div>
+
+                            <p style="font-size: 12px; color: var(--text-muted); line-height: 1.4;">
+                                Calculated using university extension enterprise benchmarks and local input costs.
+                            </p>
+                        </div>
+
+                        <!-- Interactive Yield / ROI Simulator -->
+                        <div class="econ-card">
+                            <h4 style="font-size: 16px; font-weight: 700; color: var(--green-dark);">Interactive Yield & Profit Simulator</h4>
+                            <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 16px;" id="simSubtitle">
+                                Adjust target harvest yield to simulate gross revenue and net farm profit per acre at live commodity quotes.
+                            </p>
+
+                            <div class="roi-slider-group">
+                                <div class="roi-slider-header">
+                                    <span id="simTargetLabel">Target Yield (bu/acre)</span>
+                                    <span id="sliderYieldDisplay" style="color: var(--green-dark); font-weight: 800; font-size: 15px;">205 bu / acre</span>
+                                </div>
+                                <input type="range" class="roi-range" id="yieldRangeSlider" min="140" max="260" step="5" value="205">
+                                <div style="display:flex; justify-content:space-between; font-size:11px; color:var(--text-muted); margin-top:4px;" id="simSliderTicks">
+                                    <span>Low Yield (Stress)</span>
+                                    <span>Expected Avg</span>
+                                    <span>High Yield</span>
+                                </div>
+                            </div>
+
+                            <div class="roi-results-box">
+                                <div class="roi-result-row">
+                                    <span style="font-size: 13px; color: var(--text-secondary);">Projected Gross Revenue:</span>
+                                    <strong id="simGrossRev" style="font-size: 15px; color: var(--green-dark);">$918.40 / acre</strong>
+                                </div>
+                                <div class="roi-result-row">
+                                    <span style="font-size: 13px; color: var(--text-secondary);">Break-Even Operating Cost:</span>
+                                    <strong style="font-size: 14px; color: var(--text-muted);" id="simCostDisplay">-$642.50 / acre</strong>
+                                </div>
+                                <div style="height: 1px; background: var(--border); margin: 8px 0;"></div>
+                                <div class="roi-result-row" style="align-items: baseline;">
+                                    <span style="font-size: 14px; font-weight: 700; color: var(--green-dark);">Estimated Net Margin:</span>
+                                    <span class="roi-net-val" id="simNetProfit">+$275.90 / ac</span>
+                                </div>
+                                <div style="font-size: 12px; font-weight: 600; color: var(--green-mid); text-align: right;" id="simFieldTotal">
+                                    Total Field Net Profit: <strong>+$44,144.00</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 6. IN-FIELD IOT & TELEMETRY SENSORS -->
+                <section id="sensors">
+                    <div class="dash-section-header">
+                        <div class="dash-section-title-wrap">
+                            <h3>📡 In-Field Telemetry & Hardware Feeds</h3>
+                            <p class="dash-section-sub">Connected in-ground capacitance probes, micro-weather stations, and machine CAN-bus</p>
+                        </div>
+                        <span style="font-size: 12px; color: var(--text-muted); font-weight: 700;" id="sensorStatusCount">0 Hardware Devices Connected</span>
+                    </div>
+
+                    <div class="sensors-grid" id="sensorsGrid">
+                        <div class="empty-state-box">
+                            <div class="empty-state-icon">📡</div>
+                            <h4>No Hardware Sensors Connected Yet</h4>
+                            <p>Connect your wireless capacitance soil moisture probes, on-farm micro-weather stations, or machinery CAN-bus to stream real-time in-field telemetry.</p>
+                            <button type="button" class="topbar-btn outline" id="connectSensorBtn" style="margin-top: 4px;">+ Connect Field Sensor</button>
+                        </div>
+                    </div>
+                </section>
+                
+            </div>
+        </main>
+    </div>
+
+    <!-- ==========================================
+         PRINTABLE AGRONOMY REPORT MODAL
+         ========================================== -->
+    <div class="report-modal" id="reportModal">
+        <div class="report-sheet">
+            <button type="button" class="report-close" id="closeReportBtn">&times;</button>
+
+            <div class="report-header-banner">
+                <div>
+                    <h2 style="font-family: var(--font-serif); font-size: 26px; color: var(--green-dark);">Field Health & Agronomy Executive Brief</h2>
+                    <p style="font-size: 13px; color: var(--text-secondary);">Generated by CropSwitch Precision Ag Platform · NASA Satellite Telemetry</p>
+                </div>
+                <div style="text-align: right;">
+                    <strong style="display:block; font-size: 14px; color: var(--green-dark);">CONFIDENTIAL</strong>
+                    <span style="font-size: 12px; color: var(--text-muted);" id="reportDateText">June 12, 2026</span>
+                </div>
+            </div>
+
+            <div class="report-meta-grid">
+                <div>
+                    <strong>Farm Operation:</strong><br>
+                    <span id="repFarmName">--</span>
+                </div>
+                <div>
+                    <strong>Operator:</strong><br>
+                    <span id="repOperatorName">--</span>
+                </div>
+                <div>
+                    <strong>Active Parcel:</strong><br>
+                    <span id="repFieldName">No active parcel</span>
+                </div>
+                <div>
+                    <strong>Crop & Practice:</strong><br>
+                    <span id="repCropName">--</span>
+                </div>
+                <div>
+                    <strong>Growth Stage:</strong><br>
+                    <span id="repPlantingDate">--</span>
+                </div>
+                <div>
+                    <strong>Soil Association:</strong><br>
+                    <span id="repSoilName">--</span>
+                </div>
+            </div>
+
+            <div class="report-section">
+                <h4>1. Vegetative Index & Canopy Health (Sentinel-2 NDVI)</h4>
+                <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 8px;" id="repNdviNarrative">
+                    Vegetation health index calibrated to active parcel boundaries.
+                </p>
+            </div>
+
+            <div class="report-section">
+                <h4>2. Root Zone Moisture & Water Balance</h4>
+                <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 8px;" id="repMoistureNarrative">
+                    NASA SMAP radar telemetry reflects current volumetric water content and subsoil reserve.
+                </p>
+            </div>
+
+            <div class="report-section">
+                <h4>3. Agronomic Action Plan & Variable Rate Recommendations</h4>
+                <ul style="font-size: 13px; color: var(--text-secondary); line-height: 1.6; padding-left: 20px;" id="repActionList">
+                    <li>Select or register an active field parcel to generate custom agronomic guidance.</li>
+                </ul>
+            </div>
+
+            <div class="report-actions">
+                <button type="button" class="topbar-btn outline" id="closeReportBtn2">Close Preview</button>
+                <button type="button" class="topbar-btn primary" id="triggerPrintBtn">🖨️ Print / Save to PDF</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         ADD NEW PARCEL MODAL
+         ========================================== -->
+    <div class="report-modal" id="addFieldModal">
+        <div class="report-sheet" style="max-width: 560px;">
+            <button type="button" class="report-close" id="closeAddFieldBtn">&times;</button>
+            <h3 style="font-family: var(--font-serif); font-size: 22px; color: var(--green-dark); margin-bottom: 6px;">Register New Field</h3>
+            <p style="font-size: 12.5px; color: var(--text-secondary); margin-bottom: 16px;">
+                Enter your field coordinates or use GPS to locate your exact field on live satellite Earth observation.
+            </p>
+
+            <form id="addFieldForm" style="display: flex; flex-direction: column; gap: 14px;">
+                <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 12px;">
+                    <div>
+                        <label style="display:block; font-size: 12px; font-weight:700; color:var(--green-dark); margin-bottom: 4px;">Field Name *</label>
+                        <input type="text" id="newFieldName" class="task-input" style="width: 100%;" placeholder="e.g. South Creek Bottoms" required>
+                    </div>
+                    <div>
+                        <label style="display:block; font-size: 12px; font-weight:700; color:var(--green-dark); margin-bottom: 4px;">Total Acreage *</label>
+                        <input type="number" id="newFieldAcres" class="task-input" style="width: 100%;" placeholder="e.g. 80" min="1" max="50000" required>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                    <div>
+                        <label style="display:block; font-size: 12px; font-weight:700; color:var(--green-dark); margin-bottom: 4px;">Crop Type *</label>
+                        <select id="newFieldCrop" class="field-select" style="width: 100%;">
+                            <option value="Corn" selected>Corn (Zea mays)</option>
+                            <option value="Soybeans">Soybeans (Glycine max)</option>
+                            <option value="Winter Wheat">Hard Red Winter Wheat</option>
+                            <option value="Oats">Oats</option>
+                            <option value="Cotton">Cotton</option>
+                            <option value="Alfalfa">Alfalfa</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="display:block; font-size: 12px; font-weight:700; color:var(--green-dark); margin-bottom: 4px;">Irrigation Management</label>
+                        <select id="newFieldIrrigation" class="field-select" style="width: 100%;">
+                            <option value="Rainfed / Dryland" selected>Rainfed / Dryland</option>
+                            <option value="Center Pivot">Center Pivot Sprinkler</option>
+                            <option value="Subsurface Drip">Subsurface Drip (SDI)</option>
+                            <option value="Furrow Flood">Furrow / Gravity Flood</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- FIELD AREA & GPS COORDINATES SECTION -->
+                <div style="background: var(--cream); border: 1.5px solid var(--border); border-radius: var(--radius-sm); padding: 14px; display: flex; flex-direction: column; gap: 10px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 12.5px; font-weight: 700; color: var(--green-dark);">📍 Field Coordinates & Location</span>
+                        <button type="button" class="topbar-btn outline" id="newFieldGpsBtn" style="padding: 4px 10px; font-size: 11px;">
+                            🎯 Auto-Detect GPS Location
+                        </button>
+                    </div>
+
+                    <div>
+                        <label style="display:block; font-size: 11.5px; font-weight:600; color:var(--text-secondary); margin-bottom: 4px;">Area / County / Landmark *</label>
+                        <input type="text" id="newFieldLocation" class="task-input" style="width: 100%; font-size: 12.5px;" placeholder="e.g. Story County, IA or farm address" required>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <div>
+                            <label style="display:block; font-size: 11.5px; font-weight:600; color:var(--text-secondary); margin-bottom: 4px;">Exact Latitude (°N) *</label>
+                            <input type="number" step="any" id="newFieldLat" class="task-input" style="width: 100%; font-family: monospace; font-size: 13px;" placeholder="e.g. 42.0308" required>
+                        </div>
+                        <div>
+                            <label style="display:block; font-size: 11.5px; font-weight:600; color:var(--text-secondary); margin-bottom: 4px;">Exact Longitude (°W/°E) *</label>
+                            <input type="number" step="any" id="newFieldLng" class="task-input" style="width: 100%; font-family: monospace; font-size: 13px;" placeholder="e.g. -93.6319" required>
+                        </div>
+                    </div>
+
+                    <div style="font-size: 11.5px; color: var(--green-dark); background: rgba(16, 185, 129, 0.1); padding: 7px 10px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: space-between;" id="coordPreviewBadge">
+                        <span>🎯 Targeted Focus: <strong id="targetCoordText">Awaiting coordinates input...</strong></span>
+                        <span style="font-size: 10.5px; color: var(--text-muted);">NASA SMAP & Sentinel-2 Linked</span>
+                    </div>
+                </div>
+
+                <div class="report-actions" style="margin-top: 6px;">
+                    <button type="button" class="topbar-btn outline" id="cancelAddFieldBtn">Cancel</button>
+                    <button type="submit" class="topbar-btn primary">Save & Locate Exact Field</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         FARM & SYSTEM SETTINGS MODAL
+         ========================================== -->
+    <div class="report-modal" id="settingsModal">
+        <div class="report-sheet" style="max-width: 620px;">
+            <button type="button" class="report-close" id="closeSettingsBtn">&times;</button>
+            <h3 style="font-family: var(--font-serif); font-size: 22px; color: var(--green-dark); margin-bottom: 6px;">⚙️ Farm & System Settings</h3>
+            <p style="font-size: 12.5px; color: var(--text-secondary); margin-bottom: 18px;">
+                Customize your command center profile, measurement standards, telemetry intervals, and data backups.
+            </p>
+
+            <form id="settingsForm" style="display: flex; flex-direction: column; gap: 16px;">
+                <!-- 1. FARM & OPERATOR PROFILE -->
+                <div style="background: var(--cream); border: 1px solid var(--border-light); border-radius: var(--radius-sm); padding: 14px; display: flex; flex-direction: column; gap: 10px;">
+                    <span style="font-size: 13px; font-weight: 700; color: var(--green-dark);">👤 Farm & Operator Profile</span>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                        <div>
+                            <label style="display:block; font-size: 11.5px; font-weight:600; color:var(--text-secondary); margin-bottom: 4px;">Primary Operator Name</label>
+                            <input type="text" id="setOperatorName" class="task-input" style="width: 100%;" placeholder="e.g. Mike Henderson" required>
+                        </div>
+                        <div>
+                            <label style="display:block; font-size: 11.5px; font-weight:600; color:var(--text-secondary); margin-bottom: 4px;">Farm or Enterprise Name</label>
+                            <input type="text" id="setFarmName" class="task-input" style="width: 100%;" placeholder="e.g. Henderson Heritage Farm" required>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label style="display:block; font-size: 11.5px; font-weight:600; color:var(--text-secondary); margin-bottom: 4px;">Headquarters / Location</label>
+                        <input type="text" id="setFarmLocation" class="task-input" style="width: 100%; font-size: 12.5px;" placeholder="e.g. Story County, IA">
+                    </div>
+                </div>
+
+                <!-- 2. REGIONAL MEASUREMENT UNITS -->
+                <div style="background: var(--cream); border: 1px solid var(--border-light); border-radius: var(--radius-sm); padding: 14px; display: flex; flex-direction: column; gap: 10px;">
+                    <span style="font-size: 13px; font-weight: 700; color: var(--green-dark);">📐 Measurement Standards</span>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
+                        <div>
+                            <label style="display:block; font-size: 11.5px; font-weight:600; color:var(--text-secondary); margin-bottom: 4px;">Temperature</label>
+                            <select id="setTempUnit" class="field-select" style="width: 100%;">
+                                <option value="fahrenheit" selected>Fahrenheit (°F)</option>
+                                <option value="celsius">Celsius (°C)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label style="display:block; font-size: 11.5px; font-weight:600; color:var(--text-secondary); margin-bottom: 4px;">Acreage Units</label>
+                            <select id="setAreaUnit" class="field-select" style="width: 100%;">
+                                <option value="acres" selected>Acres (ac)</option>
+                                <option value="hectares">Hectares (ha)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label style="display:block; font-size: 11.5px; font-weight:600; color:var(--text-secondary); margin-bottom: 4px;">Wind Velocity</label>
+                            <select id="setWindUnit" class="field-select" style="width: 100%;">
+                                <option value="mph" selected>Miles/hr (mph)</option>
+                                <option value="kmh">Km/hr (km/h)</option>
+                                <option value="knots">Knots (kn)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. TELEMETRY & ADVISORY CONFIG -->
+                <div style="background: var(--cream); border: 1px solid var(--border-light); border-radius: var(--radius-sm); padding: 14px; display: flex; flex-direction: column; gap: 10px;">
+                    <span style="font-size: 13px; font-weight: 700; color: var(--green-dark);">🌤️ Telemetry & Advisory Config</span>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                        <div>
+                            <label style="display:block; font-size: 11.5px; font-weight:600; color:var(--text-secondary); margin-bottom: 4px;">Live Polling Refresh Rate</label>
+                            <select id="setRefreshRate" class="field-select" style="width: 100%;">
+                                <option value="30000">Every 30 Seconds (Fast)</option>
+                                <option value="60000" selected>Every 60 Seconds (Standard)</option>
+                                <option value="300000">Every 5 Minutes (Low Bandwidth)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label style="display:block; font-size: 11.5px; font-weight:600; color:var(--text-secondary); margin-bottom: 4px;">High Drift Wind Warning</label>
+                            <select id="setDriftThreshold" class="field-select" style="width: 100%;">
+                                <option value="12">12 mph (Strict Containment)</option>
+                                <option value="14" selected>14 mph (Standard Label)</option>
+                                <option value="16">16 mph (Course Droplets)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. DATA MANAGEMENT & EXPORT -->
+                <div style="background: var(--cream); border: 1px solid var(--border-light); border-radius: var(--radius-sm); padding: 14px; display: flex; flex-direction: column; gap: 10px;">
+                    <span style="font-size: 13px; font-weight: 700; color: var(--green-dark);">💾 Farm Data Management</span>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button type="button" class="topbar-btn outline" id="exportFarmJsonBtn" style="padding: 6px 12px; font-size: 12px;">
+                            📥 Export Backup (JSON)
+                        </button>
+                        <button type="button" class="topbar-btn outline" id="clearAllFarmDataBtn" style="padding: 6px 12px; font-size: 12px; color: #DC2626; border-color: rgba(220, 38, 38, 0.4);">
+                            🗑️ Reset All Farm Data
+                        </button>
+                    </div>
+                </div>
+
+                <div class="report-actions" style="margin-top: 4px;">
+                    <button type="button" class="topbar-btn outline" id="cancelSettingsBtn">Cancel</button>
+                    <button type="submit" class="topbar-btn primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         ADD NEW FARM MODAL
+         ========================================== -->
+    <div class="report-modal" id="addFarmModal">
+        <div class="report-sheet" style="max-width: 500px;">
+            <button type="button" class="report-close" id="closeAddFarmBtn">&times;</button>
+            <h3 style="font-family: var(--font-serif); font-size: 22px; color: var(--green-dark); margin-bottom: 6px;">Register New Farm</h3>
+            <p style="font-size: 12.5px; color: var(--text-secondary); margin-bottom: 16px;">
+                Add a new farm enterprise or landholding. You can then add and manage fields under this farm.
+            </p>
+
+            <form id="addFarmForm" style="display: flex; flex-direction: column; gap: 14px;">
+                <div>
+                    <label style="display:block; font-size: 12px; font-weight:700; color:var(--green-dark); margin-bottom: 4px;">Farm or Enterprise Name *</label>
+                    <input type="text" id="newFarmName" class="task-input" style="width: 100%;" placeholder="e.g. Henderson Heritage Farm" required>
+                </div>
+                <div>
+                    <label style="display:block; font-size: 12px; font-weight:700; color:var(--green-dark); margin-bottom: 4px;">Primary Operator / Agronomist Name *</label>
+                    <input type="text" id="newFarmOperator" class="task-input" style="width: 100%;" placeholder="e.g. Mike Henderson" required>
+                </div>
+                <div>
+                    <label style="display:block; font-size: 12px; font-weight:700; color:var(--green-dark); margin-bottom: 4px;">Headquarters / Location *</label>
+                    <input type="text" id="newFarmLocation" class="task-input" style="width: 100%;" placeholder="e.g. Story County, IA" required>
+                </div>
+
+                <div class="report-actions" style="margin-top: 6px;">
+                    <button type="button" class="topbar-btn outline" id="cancelAddFarmBtn">Cancel</button>
+                    <button type="submit" class="topbar-btn primary">Save Farm</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    
+    <!-- Dashboard Interactive Controller -->
+    <script src="dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CropSwitch — Find the right crop for your land</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="cropswitch-icon.png">
+    <link rel="stylesheet" href="styles.css?v=20261112c">
+    <!-- Leaflet CSS for Interactive NASA Satellite Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+</head>
+<body>
+
+    <!-- ========== TOP NOTIFICATION BANNER ========== -->
+    <div class="top-banner">
+        <div class="container top-banner-inner">
+            <span class="banner-tag">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                Live Telemetry
+            </span>
+            <span class="banner-text" id="topBannerText">Live field microclimate & satellite telemetry active across all 50 U.S. states.</span>
+            <a href="#soil-water" class="banner-link">View field telemetry →</a>
+            <button class="banner-close" aria-label="Dismiss banner">&times;</button>
+        </div>
+    </div>
+
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar">
+        <div class="container navbar-inner">
+            <a href="#" class="logo" aria-label="CropSwitch Home">
+                <img src="cropswitch-logo.png" alt="CropSwitch — Analyze • Adapt • Grow" class="site-logo-img" style="height: 32px; max-height: 32px; width: auto; max-width: 145px; object-fit: contain; display: block; background: transparent;" height="32">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#crops">Crops & Seasons</a></li>
+                <li><a href="#soil-water">Soil & Water</a></li>
+                <li><a href="#satellite-map">Satellite Map</a></li>
+                <li><a href="#gdd-tracker">Climate & GDD</a></li>
+                <li><a href="#ai-advisor">AI Advisor</a></li>
+                <li><a href="#how-it-works">How it works</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <!-- Notifications Area -->
+                <div class="notification-wrapper" id="notifWrapper">
+                    <button class="notif-btn" id="notifBtn" aria-label="Notifications" aria-expanded="false">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                        <span class="notif-badge" id="notifBadge">3</span>
+                    </button>
+                    <div class="notif-dropdown" id="notifDropdown">
+                        <div class="notif-header">
+                            <div>
+                                <h4>Field Intelligence</h4>
+                                <span class="notif-subtitle" id="notifSubtitle">Connecting live field alerts...</span>
+                            </div>
+                            <button class="mark-read-btn" id="markReadBtn">Mark all read</button>
+                        </div>
+                        <div class="notif-list" id="notifList">
+                            <div class="notif-item unread">
+                                <div class="notif-icon-box alert" style="background:rgba(22, 163, 74, 0.12); color:#16A34A;">
+                                    <span class="live-pulse-dot" style="background:#16A34A; width:8px; height:8px; display:inline-block; border-radius:50%;"></span>
+                                </div>
+                                <div class="notif-content">
+                                    <p class="notif-title">Syncing Live Telemetry...</p>
+                                    <p class="notif-detail">Retrieving real-time microclimate & soil radar alerts from Open-Meteo & NASA.</p>
+                                    <span class="notif-time">Live Feed Active</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="notif-footer">
+                            <a href="dashboard.html">Open Farm Dashboard Alerts →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="login.html" class="btn btn-sm nav-login-btn" style="border: 1.5px solid var(--border); background: var(--white); color: var(--green-dark);">Sign In</a>
+                <a href="#hero" class="btn btn-sm btn-primary">Get started</a>
+                <button class="mobile-menu-btn" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== SECTION 01 — HERO ========== -->
+    <section class="section section-hero" id="hero">
+        <div class="hero-bg-overlay"></div>
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <p class="section-label">01 / Start with your land</p>
+                <h1>The right crop starts with the right place.</h1>
+                <p class="hero-desc">From Iowa's fertile loam to Georgia's sandy soils, no two farms grow the same. Find crops that fit your region, soil, and season.</p>
+                <div class="hero-badge">
+                    <div class="hero-badge-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#1B3726" stroke-width="1.5"/><path d="M10 5v5l3 3" stroke="#1B3726" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    </div>
+                    <div>
+                        <strong>Made for U.S. growing conditions</strong>
+                        <span>State → local climate → your soil</span>
+                    </div>
+                </div>
+                <!-- Stats row -->
+                <div class="hero-stats-row">
+                    <div class="hero-stat">
+                        <span class="hero-stat-num">50+</span>
+                        <span class="hero-stat-text">Crop varieties</span>
+                    </div>
+                    <div class="hero-stat-divider"></div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-num">3,000+</span>
+                        <span class="hero-stat-text">U.S. counties</span>
+                    </div>
+                    <div class="hero-stat-divider"></div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-num">12</span>
+                        <span class="hero-stat-text">Soil types</span>
+                    </div>
+                </div>
+                <p class="hero-note">Explore live agricultural telemetry across all 50 U.S. states below. Your farm plan begins with the details you provide.</p>
+            </div>
+            <div class="hero-card">
+                <div class="hero-card-header">
+                    <h3>What could you grow?</h3>
+                    <span class="badge-telemetry" style="background:#E0F2FE; color:#0369A1; border:1px solid #BAE6FD;">Live Telemetry</span>
+                </div>
+                <form class="hero-form" id="cropForm">
+                    <div class="form-group full">
+                        <label for="state">State</label>
+                        <select id="state">
+                            <option value="Alabama">Alabama</option>
+                            <option value="Alaska">Alaska</option>
+                            <option value="Arizona">Arizona</option>
+                            <option value="Arkansas">Arkansas</option>
+                            <option value="California">California</option>
+                            <option value="Colorado">Colorado</option>
+                            <option value="Connecticut">Connecticut</option>
+                            <option value="Delaware">Delaware</option>
+                            <option value="Florida">Florida</option>
+                            <option value="Georgia">Georgia</option>
+                            <option value="Hawaii">Hawaii</option>
+                            <option value="Idaho">Idaho</option>
+                            <option value="Illinois">Illinois</option>
+                            <option value="Indiana">Indiana</option>
+                            <option value="Iowa" selected>Iowa</option>
+                            <option value="Kansas">Kansas</option>
+                            <option value="Kentucky">Kentucky</option>
+                            <option value="Louisiana">Louisiana</option>
+                            <option value="Maine">Maine</option>
+                            <option value="Maryland">Maryland</option>
+                            <option value="Massachusetts">Massachusetts</option>
+                            <option value="Michigan">Michigan</option>
+                            <option value="Minnesota">Minnesota</option>
+                            <option value="Mississippi">Mississippi</option>
+                            <option value="Missouri">Missouri</option>
+                            <option value="Montana">Montana</option>
+                            <option value="Nebraska">Nebraska</option>
+                            <option value="Nevada">Nevada</option>
+                            <option value="New Hampshire">New Hampshire</option>
+                            <option value="New Jersey">New Jersey</option>
+                            <option value="New Mexico">New Mexico</option>
+                            <option value="New York">New York</option>
+                            <option value="North Carolina">North Carolina</option>
+                            <option value="North Dakota">North Dakota</option>
+                            <option value="Ohio">Ohio</option>
+                            <option value="Oklahoma">Oklahoma</option>
+                            <option value="Oregon">Oregon</option>
+                            <option value="Pennsylvania">Pennsylvania</option>
+                            <option value="Rhode Island">Rhode Island</option>
+                            <option value="South Carolina">South Carolina</option>
+                            <option value="South Dakota">South Dakota</option>
+                            <option value="Tennessee">Tennessee</option>
+                            <option value="Texas">Texas</option>
+                            <option value="Utah">Utah</option>
+                            <option value="Vermont">Vermont</option>
+                            <option value="Virginia">Virginia</option>
+                            <option value="Washington">Washington</option>
+                            <option value="West Virginia">West Virginia</option>
+                            <option value="Wisconsin">Wisconsin</option>
+                            <option value="Wyoming">Wyoming</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="county">County / region</label>
+                            <select id="county">
+                                <option>Story County</option>
+                                <option>Polk County</option>
+                                <option>Johnson County</option>
+                                <option>Black Hawk County</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="heroSoilSelect">Soil type</label>
+                            <select id="heroSoilSelect">
+                                <option>Loam</option>
+                                <option>Clay</option>
+                                <option>Sandy</option>
+                                <option>Silt</option>
+                                <option>Peat</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-result">
+                        <div class="result-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1B3726" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2a9 9 0 0 1 9 9c0 4.97-4.03 9-9 9A9 9 0 0 1 3 11a9 9 0 0 1 9-9z"/>
+                                <path d="M12 22V10"/>
+                                <path d="M12 14c-2.5-1-4-3-4-5 2.5 0 4 2 4 5z"/>
+                                <path d="M12 12c2.5-1 4-3 4-5-2.5 0-4 2-4 5z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <strong>Corn, soybeans & oats</strong>
+                            <span>A promising starting point for this example.</span>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">
+                        Explore suitable crops
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SECTION 02 — CROP CARDS ========== -->
+    <section class="section section-crops" id="crops">
+        <div class="container">
+            <div class="crops-header">
+                <div>
+                    <p class="section-label">02 / Grow with the season</p>
+                    <h2>A little foresight. A stronger start.</h2>
+                    <p class="section-subtitle" id="seasonSubtitle">Spring planning in Story County, Iowa · Loam soil · Illustrative recommendations</p>
+                </div>
+                <!-- Controls: State and Season Dropdowns -->
+                <div class="crops-controls">
+                    <!-- State Dropdown Selector -->
+                    <div class="state-badge-wrapper" id="stateBadgeWrapper">
+                        <button class="state-badge" id="stateDropdownBtn" aria-label="Select state" aria-expanded="false">
+                            <span class="state-icon">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            </span>
+                            <span id="stateActiveLabel">Iowa</span>
+                            <svg class="chevron-icon" width="12" height="12" viewBox="0 0 12 12"><path d="M3 5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                        </button>
+                        <div class="state-menu" id="stateMenu">
+                            <button class="state-option" data-state="Alabama"><span>Alabama</span></button>
+                            <button class="state-option" data-state="Alaska"><span>Alaska</span></button>
+                            <button class="state-option" data-state="Arizona"><span>Arizona</span></button>
+                            <button class="state-option" data-state="Arkansas"><span>Arkansas</span></button>
+                            <button class="state-option" data-state="California"><span>California</span></button>
+                            <button class="state-option" data-state="Colorado"><span>Colorado</span></button>
+                            <button class="state-option" data-state="Connecticut"><span>Connecticut</span></button>
+                            <button class="state-option" data-state="Delaware"><span>Delaware</span></button>
+                            <button class="state-option" data-state="Florida"><span>Florida</span></button>
+                            <button class="state-option" data-state="Georgia"><span>Georgia</span></button>
+                            <button class="state-option" data-state="Hawaii"><span>Hawaii</span></button>
+                            <button class="state-option" data-state="Idaho"><span>Idaho</span></button>
+                            <button class="state-option" data-state="Illinois"><span>Illinois</span></button>
+                            <button class="state-option" data-state="Indiana"><span>Indiana</span></button>
+                            <button class="state-option active" data-state="Iowa"><span>Iowa</span><span class="check">✓</span></button>
+                            <button class="state-option" data-state="Kansas"><span>Kansas</span></button>
+                            <button class="state-option" data-state="Kentucky"><span>Kentucky</span></button>
+                            <button class="state-option" data-state="Louisiana"><span>Louisiana</span></button>
+                            <button class="state-option" data-state="Maine"><span>Maine</span></button>
+                            <button class="state-option" data-state="Maryland"><span>Maryland</span></button>
+                            <button class="state-option" data-state="Massachusetts"><span>Massachusetts</span></button>
+                            <button class="state-option" data-state="Michigan"><span>Michigan</span></button>
+                            <button class="state-option" data-state="Minnesota"><span>Minnesota</span></button>
+                            <button class="state-option" data-state="Mississippi"><span>Mississippi</span></button>
+                            <button class="state-option" data-state="Missouri"><span>Missouri</span></button>
+                            <button class="state-option" data-state="Montana"><span>Montana</span></button>
+                            <button class="state-option" data-state="Nebraska"><span>Nebraska</span></button>
+                            <button class="state-option" data-state="Nevada"><span>Nevada</span></button>
+                            <button class="state-option" data-state="New Hampshire"><span>New Hampshire</span></button>
+                            <button class="state-option" data-state="New Jersey"><span>New Jersey</span></button>
+                            <button class="state-option" data-state="New Mexico"><span>New Mexico</span></button>
+                            <button class="state-option" data-state="New York"><span>New York</span></button>
+                            <button class="state-option" data-state="North Carolina"><span>North Carolina</span></button>
+                            <button class="state-option" data-state="North Dakota"><span>North Dakota</span></button>
+                            <button class="state-option" data-state="Ohio"><span>Ohio</span></button>
+                            <button class="state-option" data-state="Oklahoma"><span>Oklahoma</span></button>
+                            <button class="state-option" data-state="Oregon"><span>Oregon</span></button>
+                            <button class="state-option" data-state="Pennsylvania"><span>Pennsylvania</span></button>
+                            <button class="state-option" data-state="Rhode Island"><span>Rhode Island</span></button>
+                            <button class="state-option" data-state="South Carolina"><span>South Carolina</span></button>
+                            <button class="state-option" data-state="South Dakota"><span>South Dakota</span></button>
+                            <button class="state-option" data-state="Tennessee"><span>Tennessee</span></button>
+                            <button class="state-option" data-state="Texas"><span>Texas</span></button>
+                            <button class="state-option" data-state="Utah"><span>Utah</span></button>
+                            <button class="state-option" data-state="Vermont"><span>Vermont</span></button>
+                            <button class="state-option" data-state="Virginia"><span>Virginia</span></button>
+                            <button class="state-option" data-state="Washington"><span>Washington</span></button>
+                            <button class="state-option" data-state="West Virginia"><span>West Virginia</span></button>
+                            <button class="state-option" data-state="Wisconsin"><span>Wisconsin</span></button>
+                            <button class="state-option" data-state="Wyoming"><span>Wyoming</span></button>
+                        </div>
+                    </div>
+
+                    <!-- Season Dropdown selector -->
+                    <div class="season-badge-wrapper" id="seasonBadgeWrapper">
+                        <button class="season-badge" id="seasonDropdownBtn" aria-label="Select season" aria-expanded="false">
+                            <span class="season-icon" id="seasonActiveIcon">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V10"/><path d="M12 14a5 5 0 0 0 5-5c-3 0-5 2-5 5z"/><path d="M12 16a5 5 0 0 1-5-5c3 0 5 2 5 5z"/></svg>
+                            </span>
+                            <span id="seasonActiveLabel">Spring 2026</span>
+                            <svg class="chevron-icon" width="12" height="12" viewBox="0 0 12 12"><path d="M3 5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                        </button>
+                        <div class="season-menu" id="seasonMenu">
+                            <button class="season-option active" data-season="spring">
+                                <span>Spring · Mar – May</span>
+                                <span class="check">✓</span>
+                            </button>
+                            <button class="season-option" data-season="summer">
+                                <span>Summer · Jun – Aug</span>
+                            </button>
+                            <button class="season-option" data-season="autumn">
+                                <span>Autumn / Fall · Sep – Nov</span>
+                            </button>
+                            <button class="season-option" data-season="winter">
+                                <span>Winter · Dec – Feb</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Season Switcher Tabs -->
+            <div class="season-tabs">
+                <button class="season-tab active" data-season="spring">
+                    <div class="tab-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V10"/><path d="M12 14a5 5 0 0 0 5-5c-3 0-5 2-5 5z"/><path d="M12 16a5 5 0 0 1-5-5c3 0 5 2 5 5z"/><path d="M7 22h10"/></svg>
+                    </div>
+                    <span class="tab-title">Spring</span>
+                    <span class="tab-sub">Planting & warming</span>
+                </button>
+                <button class="season-tab" data-season="summer">
+                    <div class="tab-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                    </div>
+                    <span class="tab-title">Summer</span>
+                    <span class="tab-sub">Peak growth & heat</span>
+                </button>
+                <button class="season-tab" data-season="autumn">
+                    <div class="tab-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22l10-10"/><path d="M12 2a7 7 0 0 1 7 7c0 5-5 8-7 13-2-5-7-8-7-13a7 7 0 0 1 7-7z"/><path d="M12 6v6"/></svg>
+                    </div>
+                    <span class="tab-title">Autumn</span>
+                    <span class="tab-sub">Harvest & cover crops</span>
+                </button>
+                <button class="season-tab" data-season="winter">
+                    <div class="tab-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    </div>
+                    <span class="tab-title">Winter</span>
+                    <span class="tab-sub">Dormancy & soil prep</span>
+                </button>
+            </div>
+
+            <!-- Dynamic Crop Cards Grid -->
+            <div class="crop-cards" id="cropCardsGrid">
+                <!-- Corn -->
+                <div class="crop-card" data-crop-name="Corn">
+                    <div class="crop-image">
+                        <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&h=400&fit=crop" alt="Corn field">
+                        <span class="fit-badge strong">Strong fit</span>
+                    </div>
+                    <div class="crop-info">
+                        <div class="crop-title-row">
+                            <h3>Corn</h3>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                        <p class="crop-dates"><strong>APR 20 – MAY 15</strong> · IOWA</p>
+                        <p class="crop-tip">Wait for soil to hold at 50°F or warmer.</p>
+                        <div class="crop-water">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2C8 2 4 7 4 10a4 4 0 008 0c0-3-4-8-4-8z" stroke="#1B3726" stroke-width="1.2" fill="none"/></svg>
+                            20-24 in / season total water*
+                        </div>
+                        <div class="crop-click-prompt">
+                            <span>Agronomy & field specs</span>
+                            <span>→</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Soybeans -->
+                <div class="crop-card" data-crop-name="Soybeans">
+                    <div class="crop-image">
+                        <img src="https://images.unsplash.com/photo-1586771107445-d3ca888129ff?w=600&h=400&fit=crop" alt="Soybean field" loading="lazy">
+                        <span class="fit-badge strong">Strong fit</span>
+                    </div>
+                    <div class="crop-info">
+                        <div class="crop-title-row">
+                            <h3>Soybeans</h3>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                        <p class="crop-dates"><strong>MAY 1 – MAY 25</strong> · IOWA</p>
+                        <p class="crop-tip">Aim for a warming seedbed and a dry forecast.</p>
+                        <div class="crop-water">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2C8 2 4 7 4 10a4 4 0 008 0c0-3-4-8-4-8z" stroke="#1B3726" stroke-width="1.2" fill="none"/></svg>
+                            18-24 in / season total water*
+                        </div>
+                        <div class="crop-click-prompt">
+                            <span>Agronomy & field specs</span>
+                            <span>→</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Oats -->
+                <div class="crop-card" data-crop-name="Oats">
+                    <div class="crop-image">
+                        <img src="https://images.unsplash.com/photo-1753786065559-a4b10f16f49b?w=600&h=400&fit=crop" alt="Oats field" loading="lazy">
+                        <span class="fit-badge good">Good fit</span>
+                    </div>
+                    <div class="crop-info">
+                        <div class="crop-title-row">
+                            <h3>Oats</h3>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                        <p class="crop-dates"><strong>MAR 15 – APR 15</strong> · IOWA</p>
+                        <p class="crop-tip">Prefer cool conditions. Check local timing.</p>
+                        <div class="crop-water">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2C8 2 4 7 4 10a4 4 0 008 0c0-3-4-8-4-8z" stroke="#1B3726" stroke-width="1.2" fill="none"/></svg>
+                            14-18 in / season total water*
+                        </div>
+                        <div class="crop-click-prompt">
+                            <span>Agronomy & field specs</span>
+                            <span>→</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="crops-footnote">*Planting ranges include rainfall and irrigation, not irrigation alone. Timing varies by field, variety, and weather. Confirm local guidance before planting.</p>
+        </div>
+    </section>
+
+    <!-- ========== SECTION 03 — SOIL & WATER ========== -->
+    <section class="section section-soil" id="soil-water">
+        <div class="container">
+            <div class="soil-grid">
+                <div class="soil-image-wrap">
+                    <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=600&h=700&fit=crop" alt="Farmer with soil">
+                    <div class="soil-float-card">
+                        <div class="float-icon-box">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1B3726" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                <path d="M12 8v8"/>
+                                <path d="M8 12h8"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <strong>Good decisions run deep.</strong>
+                            <span>Start with a soil test. Build from what's there.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="soil-text">
+                    <p class="section-label">03 / Every drop, every acre.</p>
+                    <h2>Work with your land. Not against it.</h2>
+                    <p class="soil-desc">Healthy soil and thoughtful water use go hand in hand. Turn measurements into plain-language guidance you can put to work.</p>
+                    <div class="soil-features">
+                        <div class="soil-feature">
+                            <div class="feature-icon-box">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1B3726" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>Water with a reason</strong>
+                                <p>See crop water needs alongside rainfall and soil moisture. Know when to check the field — and when to hold off.</p>
+                            </div>
+                        </div>
+                        <div class="soil-feature">
+                            <div class="feature-icon-box">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1B3726" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                                    <line x1="12" y1="22.08" x2="12" y2="12"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>Understand your soil</strong>
+                                <p>Make sense of pH, texture, and organic matter. See what they mean for your crop choices and land preparation.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Soil Types & Water Measurement Panel -->
+            <div class="soil-measurement-panel">
+                <div class="soil-panel-header">
+                    <div>
+                        <div class="panel-badge-row">
+                            <span class="soil-badge">Hydrology & Soil Index</span>
+                            <span class="usda-source">USDA-NRCS & NASA Earthdata Benchmarks</span>
+                        </div>
+                        <h3>Soil Types & Water Retention Capacity</h3>
+                        <p class="soil-panel-sub">Select your soil type to inspect water storage per foot of root zone, drainage velocity, and optimal irrigation intervals.</p>
+                    </div>
+                    <div class="soil-pills" id="soilTypePills">
+                        <button class="soil-pill active" data-soil="loam">
+                            <span class="pill-dot"></span>
+                            Loam
+                        </button>
+                        <button class="soil-pill" data-soil="clay">
+                            <span class="pill-dot"></span>
+                            Clay
+                        </button>
+                        <button class="soil-pill" data-soil="sandy">
+                            <span class="pill-dot"></span>
+                            Sandy
+                        </button>
+                        <button class="soil-pill" data-soil="silt">
+                            <span class="pill-dot"></span>
+                            Silt Loam
+                        </button>
+                        <button class="soil-pill" data-soil="peat">
+                            <span class="pill-dot"></span>
+                            Peat / Muck
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dynamic Soil Measurement Card Display -->
+                <div class="soil-display-card" id="soilDisplayCard">
+                    <!-- Loaded dynamically via JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SECTION 04 — SATELLITE FIELD OBSERVATORY ========== -->
+    <section class="section section-satellite" id="satellite-map">
+        <div class="container">
+            <div class="sat-header-row">
+                <div>
+                    <p class="section-label">04 / NASA Earth Observation</p>
+                    <h2>Your fields. Seen from orbit.</h2>
+                    <p class="section-subtitle">Real-time multispectral imagery, vegetative vigor, and NASA SMAP root-zone soil moisture dynamically synced to your selected county.</p>
+                </div>
+                <div class="sat-meta-badge">
+                    <span class="sat-live-dot"></span>
+                    <span>NASA GIBS & Sentinel-2 Online</span>
+                </div>
+            </div>
+
+            <!-- Map Wrapper Card -->
+            <div class="sat-map-card">
+                <!-- Controls Bar -->
+                <div class="sat-controls-bar">
+                    <div class="sat-layer-pills" id="satLayerPills">
+                        <button type="button" class="sat-pill active" data-layer="true-color">
+                            <span class="sat-pill-icon">🛰️</span>
+                            <span>True Color (Satellite)</span>
+                        </button>
+                        <button type="button" class="sat-pill" data-layer="ndvi">
+                            <span class="sat-pill-icon">🌿</span>
+                            <span>NDVI Canopy Health</span>
+                        </button>
+                        <button type="button" class="sat-pill" data-layer="smap">
+                            <span class="sat-pill-icon">💧</span>
+                            <span>NASA SMAP Soil Moisture</span>
+                        </button>
+                        <button type="button" class="sat-pill" data-layer="thermal">
+                            <span class="sat-pill-icon">🌡️</span>
+                            <span>Thermal Surface (ECOSTRESS)</span>
+                        </button>
+                    </div>
+
+                    <div class="sat-actions">
+                        <button type="button" class="sat-action-btn" id="satRecenterBtn" title="Re-center map on active farm">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polygon points="12 2 12 6 12 18 12 22"/><polygon points="2 12 6 12 18 12 22 12"/></svg>
+                            <span>Center Farm</span>
+                        </button>
+                        <button type="button" class="sat-action-btn" id="satDrawParcelBtn" title="Inspect agricultural parcel boundary">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+                            <span id="satDrawBtnText">Toggle Field Bounds</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Leaflet Map Container -->
+                <div class="sat-map-container" id="nasaMapContainer">
+                    <!-- Leaflet renders here -->
+                </div>
+
+                <!-- Map Info Footer Bar -->
+                <div class="sat-status-bar">
+                    <div class="sat-status-left">
+                        <span class="sat-status-tag" id="satActiveLayerTag">Active Layer: True Color High-Res (Esri/NASA)</span>
+                        <span class="sat-divider">·</span>
+                        <span class="sat-coords" id="satCoordsDisplay">Lat: 42.03° N · Lon: -93.63° W · Story County, Iowa</span>
+                    </div>
+                    <div class="sat-status-right">
+                        <span class="sat-pass-time" id="satPassTime">Satellite Overpass: Sentinel-2 · 10:48 AM Local</span>
+                        <span class="sat-zoom-label" id="satZoomDisplay">Zoom 13x</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dynamic Satellite Field Telemetry Cards -->
+            <div class="sat-telemetry-grid">
+                <div class="sat-tel-card">
+                    <div class="sat-tel-top">
+                        <span class="sat-tel-label">Canopy NDVI Index</span>
+                        <span class="sat-tel-icon">🌿</span>
+                    </div>
+                    <div class="sat-tel-metric">
+                        <strong class="sat-tel-val" id="satNdviVal">Loading…</strong>
+                        <span class="sat-tel-badge strong" id="satNdviBadge">High Photosynthetic Vigor</span>
+                    </div>
+                    <div class="sat-progress-bar">
+                        <div class="sat-progress-fill" id="satNdviFill" style="width: 78%; background: #2E7D32;"></div>
+                    </div>
+                    <p class="sat-tel-desc" id="satNdviDesc">Chlorophyll absorption indicates rapid vegetative stage growth. Minimal crop leaf stress detected.</p>
+                </div>
+
+                <div class="sat-tel-card">
+                    <div class="sat-tel-top">
+                        <span class="sat-tel-label">NASA SMAP Moisture</span>
+                        <span class="sat-tel-icon">💧</span>
+                    </div>
+                    <div class="sat-tel-metric">
+                        <strong class="sat-tel-val" id="satSmapVal">Loading…</strong>
+                        <span class="sat-tel-badge good" id="satSmapBadge">Adequate Root-Zone</span>
+                    </div>
+                    <div class="sat-progress-bar">
+                        <div class="sat-progress-fill" id="satSmapFill" style="width: 64%; background: #1976D2;"></div>
+                    </div>
+                    <p class="sat-tel-desc" id="satSmapDesc">Surface layer (0-5cm) has sufficient capillary retention. Ideal tillage window without compaction risk.</p>
+                </div>
+
+                <div class="sat-tel-card">
+                    <div class="sat-tel-top">
+                        <span class="sat-tel-label">ECOSTRESS Thermal Variance</span>
+                        <span class="sat-tel-icon">🌡️</span>
+                    </div>
+                    <div class="sat-tel-metric">
+                        <strong class="sat-tel-val" id="satThermalVal">Unavailable</strong>
+                        <span class="sat-tel-badge" id="satThermalBadge">Not connected</span>
+                    </div>
+                    <div class="sat-progress-bar">
+                        <div class="sat-progress-fill" id="satThermalFill" style="width: 48%; background: #F59E0B;"></div>
+                    </div>
+                    <p class="sat-tel-desc" id="satThermalDesc">ECOSTRESS thermal data is not integrated.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SECTION 05 — THERMAL & CLIMATE GDD TRACKER ========== -->
+    <section class="section section-gdd" id="gdd-tracker">
+        <div class="container">
+            <div class="gdd-header-row">
+                <div>
+                    <p class="section-label">05 / Thermal Intelligence</p>
+                    <h2>Track your season. Degree by degree.</h2>
+                    <p class="section-subtitle">Growing Degree Days (GDD) measure heat energy accumulated since planting. Monitor your field's thermal pace against the 10-year county normal to pinpoint pollination, grain fill, and harvest.</p>
+                </div>
+                <div class="gdd-crop-pills" id="gddCropPills">
+                    <button type="button" class="gdd-pill active" data-crop="corn">Corn (Base 50°F)</button>
+                    <button type="button" class="gdd-pill" data-crop="soybeans">Soybeans (Base 50°F)</button>
+                    <button type="button" class="gdd-pill" data-crop="wheat">Winter Wheat (Base 32°F)</button>
+                    <button type="button" class="gdd-pill" data-crop="sorghum">Sorghum (Base 50°F)</button>
+                </div>
+            </div>
+
+            <!-- GDD Top KPI Row -->
+            <div class="gdd-kpi-grid">
+                <div class="gdd-kpi-card">
+                    <span class="gdd-kpi-label">Accumulated GDD</span>
+                    <strong class="gdd-kpi-val" id="gddCumulativeVal">1,285</strong>
+                    <span class="gdd-kpi-sub" id="gddBaseTempLabel">Heat units (Base 50°F)</span>
+                </div>
+                <div class="gdd-kpi-card">
+                    <span class="gdd-kpi-label">Season Maturity Progress</span>
+                    <strong class="gdd-kpi-val" id="gddProgressVal">64%</strong>
+                    <span class="gdd-kpi-sub" id="gddTargetLabel">Target: 2,600 GDD</span>
+                </div>
+                <div class="gdd-kpi-card">
+                    <span class="gdd-kpi-label">Days to Black Layer / Maturity</span>
+                    <strong class="gdd-kpi-val" id="gddDaysLeftVal">~36 days</strong>
+                    <span class="gdd-kpi-sub" id="gddEstDateLabel">Est. Harvest: Early Autumn</span>
+                </div>
+                <div class="gdd-kpi-card">
+                    <span class="gdd-kpi-label">vs. 10-Year Historical Normal</span>
+                    <strong class="gdd-kpi-val gdd-ahead" id="gddVsNormalVal">+92 GDD</strong>
+                    <span class="gdd-kpi-sub gdd-ahead-sub" id="gddAheadPaceLabel">~4.5 days ahead of average</span>
+                </div>
+            </div>
+
+            <!-- Charts Container -->
+            <div class="gdd-charts-grid">
+                <!-- Main GDD Line Chart -->
+                <div class="gdd-chart-box">
+                    <div class="chart-box-header">
+                        <div>
+                            <h4>Cumulative Growing Degree Days (GDD)</h4>
+                            <span class="chart-sub" id="gddChartSub">Current Season vs. 10-Year Normal · Story County, Iowa</span>
+                        </div>
+                        <div class="chart-legend-pills">
+                            <span class="legend-chip curr"><span class="chip-color"></span> Current 2026 Season</span>
+                            <span class="legend-chip norm"><span class="chip-color"></span> 10-Yr County Normal</span>
+                        </div>
+                    </div>
+                    <div class="chart-canvas-wrap">
+                        <canvas id="gddChartCanvas" height="300"></canvas>
+                    </div>
+                    <div class="gdd-milestones-row">
+                        <div class="milestone-item done">
+                            <span class="ms-dot"></span>
+                            <span class="ms-name">Emergence</span>
+                            <span class="ms-gdd">120 GDD</span>
+                        </div>
+                        <div class="milestone-item done">
+                            <span class="ms-dot"></span>
+                            <span class="ms-name">V6 Collar</span>
+                            <span class="ms-gdd">475 GDD</span>
+                        </div>
+                        <div class="milestone-item current">
+                            <span class="ms-dot"></span>
+                            <span class="ms-name">Silking / Pollination</span>
+                            <span class="ms-gdd">1,250 GDD</span>
+                        </div>
+                        <div class="milestone-item future">
+                            <span class="ms-dot"></span>
+                            <span class="ms-name">Dough Stage</span>
+                            <span class="ms-gdd">1,925 GDD</span>
+                        </div>
+                        <div class="milestone-item future">
+                            <span class="ms-dot"></span>
+                            <span class="ms-name">Black Layer Maturity</span>
+                            <span class="ms-gdd">2,600 GDD</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Secondary Cumulative Rainfall vs Water Demand Chart -->
+                <div class="gdd-chart-box secondary">
+                    <div class="chart-box-header">
+                        <div>
+                            <h4>Precipitation vs. Evapotranspiration (ETc)</h4>
+                            <span class="chart-sub" id="rainChartSub">Natural Rain Inflow vs. Crop Water Need</span>
+                        </div>
+                        <div class="chart-legend-pills">
+                            <span class="legend-chip rain"><span class="chip-color"></span> Cumulative Rain</span>
+                            <span class="legend-chip etc"><span class="chip-color"></span> Crop Water Demand</span>
+                        </div>
+                    </div>
+                    <div class="chart-canvas-wrap secondary">
+                        <canvas id="rainfallChartCanvas" height="220"></canvas>
+                    </div>
+                    <div class="rain-balance-badge" id="rainBalanceBadge">
+                        <span class="balance-icon">💧</span>
+                        <span class="balance-text" id="rainBalanceText">Rainfall is tracking <strong>+1.8 inches above baseline demand</strong>. Supplemental irrigation not required this week.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Agro-Climatic Intelligence Insights -->
+            <div class="gdd-insights-grid">
+                <div class="gdd-insight-card">
+                    <div class="insight-icon-box">🌽</div>
+                    <div>
+                        <strong>Reproductive Window Timing</strong>
+                        <p id="gddInsight1">Current thermal rate projects silk emergence between July 9 – 14. Synchronize scouting for earworm flights during early silking.</p>
+                    </div>
+                </div>
+                <div class="gdd-insight-card">
+                    <div class="insight-icon-box">☀️</div>
+                    <div>
+                        <strong>Heat Stress & Pollen Viability</strong>
+                        <p id="gddInsight2">0 extreme heat days (>95°F) anticipated during daytime pollination hours. Pollen grain viability index remains above 94%.</p>
+                    </div>
+                </div>
+                <div class="gdd-insight-card">
+                    <div class="insight-icon-box">🚜</div>
+                    <div>
+                        <strong>Field Operation Window</strong>
+                        <p id="gddInsight3">Rapid canopy closure expected within 9 days. Final post-emergence herbicide and side-dress nitrogen applications should conclude before V8.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SECTION 06 — AI AGRONOMY ADVISOR ========== -->
+    <section class="section section-ai-advisor" id="ai-advisor">
+        <div class="container">
+            <div class="ai-section-header">
+                <div class="ai-badge-row">
+                    <span class="ai-status-pill"><span class="live-pulse-dot"></span> 24/7 AI Precision Agronomist</span>
+                    <span class="ai-model-tag">Trained on NASA SMAP, GDD & Extension Agronomy</span>
+                </div>
+                <h2>Ask CropSwitch Agronomy AI</h2>
+                <p class="section-subtitle">Get instant agronomic answers on soil conditions, crop rotations, spray windows, planting dates, and NASA satellite radar telemetry across all 50 U.S. states.</p>
+            </div>
+
+            <div class="ai-advisor-workspace">
+                <!-- Left: Topic Starter Cards -->
+                <div class="ai-topics-sidebar">
+                    <h4 class="ai-topics-title">💡 Popular Agronomic Queries</h4>
+                    <p class="ai-topics-sub">Click any topic to ask the AI agronomist instantly:</p>
+
+                    <div class="ai-topic-cards">
+                        <button type="button" class="ai-topic-card" data-prompt="What are the best crops to grow in loam soil with 22 inches seasonal rainfall?">
+                            <span class="topic-icon">🌾</span>
+                            <div class="topic-info">
+                                <strong>Soil Suitability</strong>
+                                <span>Loam, clay, sand water-holding capacity</span>
+                            </div>
+                        </button>
+                        <button type="button" class="ai-topic-card" data-prompt="When is the prime corn and soybean planting window for Iowa and the Midwest?">
+                            <span class="topic-icon">📅</span>
+                            <div class="topic-info">
+                                <strong>Planting & Germination Windows</strong>
+                                <span>Soil temperature triggers (&gt;50°F)</span>
+                            </div>
+                        </button>
+                        <button type="button" class="ai-topic-card" data-prompt="How do I interpret NASA SMAP soil moisture content and NDVI vigor?">
+                            <span class="topic-icon">🛰️</span>
+                            <div class="topic-info">
+                                <strong>NASA Satellite Radar Telemetry</strong>
+                                <span>SMAP volumetric moisture & NDVI index</span>
+                            </div>
+                        </button>
+                        <button type="button" class="ai-topic-card" data-prompt="What are the best winter cover crops for nitrogen fixing and weed suppression?">
+                            <span class="topic-icon">🌿</span>
+                            <div class="topic-info">
+                                <strong>Cover Crops & Soil Health</strong>
+                                <span>Cereal rye, hairy vetch, crimson clover</span>
+                            </div>
+                        </button>
+                        <button type="button" class="ai-topic-card" data-prompt="How do wind speed and vapor pressure deficit (VPD) affect my chemical spray window?">
+                            <span class="topic-icon">💨</span>
+                            <div class="topic-info">
+                                <strong>Spray Windows & Inversion Risk</strong>
+                                <span>Wind drift (&gt;12 mph) and thermal inversion</span>
+                            </div>
+                        </button>
+                    </div>
+
+                    <!-- Agronomist Badge Note -->
+                    <div class="ai-agronomy-note">
+                        <div class="note-icon">🌱</div>
+                        <div>
+                            <strong>Always Ground-Truth</strong>
+                            <p>CropSwitch AI recommendations are backed by university agronomy extensions and live satellite telemetry.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Dedicated Interactive AI Chat Terminal -->
+                <div class="ai-chat-console">
+                    <div class="console-header">
+                        <div class="console-header-left">
+                            <div class="console-avatar">🤖</div>
+                            <div>
+                                <h4>CropSwitch AI Agronomist</h4>
+                                <span class="console-status"><span class="status-dot"></span> Active · Telemetry-Aware</span>
+                            </div>
+                        </div>
+                        <div class="console-header-right">
+                            <button type="button" class="console-btn" id="secClearChatBtn" title="Clear conversation">
+                                <span>Clear Chat</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Messages Log -->
+                    <div class="console-messages" id="secChatMessages">
+                        <div class="msg-group bot">
+                            <div class="msg-avatar">🌱</div>
+                            <div class="msg-bubble">
+                                Hello! I'm your dedicated <strong>CropSwitch AI Agronomist</strong>.
+                                <br><br>
+                                Ask me anything about crop varieties, soil types (loam, clay, sand), planting windows across all 50 states, NASA SMAP soil radar, or spray conditions!
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dedicated Chat Input Bar -->
+                    <form class="console-input-bar" id="secChatForm">
+                        <input type="text" id="secChatInput" placeholder="Ask about crops, soil, water, seasons, NASA satellite radar..." autocomplete="off">
+                        <button type="submit" class="console-send-btn" aria-label="Send message">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SECTION 07 — HOW IT WORKS ========== -->
+    <section class="section section-how" id="how-it-works">
+        <div class="container how-grid">
+            <div class="how-text">
+                <p class="section-label">07 / Built for real farm life</p>
+                <h2>You know your land. Let's build on that.</h2>
+                <p class="how-desc">First season or fifth generation, you don't need to be a data expert. Bring what you know. We'll help you see what comes next.</p>
+                <div class="steps">
+                    <div class="step">
+                        <span class="step-num">01</span>
+                        <div>
+                            <strong>Tell us where you grow</strong>
+                            <p>Add your state, county, acreage, and soil type.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-num">02</span>
+                        <div>
+                            <strong>Explore your possibilities</strong>
+                            <p>Compare suitable crops, water needs, and economics.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-num">03</span>
+                        <div>
+                            <strong>Make a plan for the season</strong>
+                            <p>Keep planting, irrigation, and harvest steps in view.</p>
+                        </div>
+                    </div>
+                </div>
+                <a href="#hero" class="btn btn-primary">
+                    Build my farm plan
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+            </div>
+            <div class="how-image-wrap">
+                <img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=600&h=700&fit=crop" alt="Farmer in field">
+                <p class="how-image-caption">More time looking at your fields. Less time piecing it all together.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SECTION 08 — FAQ ========== -->
+    <section class="section section-faq" id="faq">
+        <div class="container faq-grid">
+            <div class="faq-header">
+                <p class="section-label">08 / A little clarity</p>
+                <h2>Good questions. Straight answers.</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        Do I need sensors to get started?
+                        <span class="faq-toggle">−</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>No. Start with your location, acreage, and soil details. A recent soil test helps make your plan more useful.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        Are these guaranteed yields or profits?
+                        <span class="faq-toggle">−</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>No. Estimates help you compare scenarios. Weather, prices, costs, and field conditions can change the outcome.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        Is this only for experienced farmers?
+                        <span class="faq-toggle">−</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Not at all. Plain-language guidance helps new growers get oriented, while clear assumptions let experienced farmers bring their own judgment.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        What data sources does CropSwitch use?
+                        <span class="faq-toggle">−</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We combine USDA soil data, NOAA climate records, regional extension guidelines, and NASA satellite observations to provide well-rounded crop recommendations.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        Can I save and revisit my farm plan?
+                        <span class="faq-toggle">−</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes. Create a free account to save your farm profile, track seasonal changes, and update your plan as conditions evolve.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CTA BANNER ========== -->
+    <section class="section section-cta">
+        <div class="container cta-content">
+            <p class="cta-label">Your land has potential.</p>
+            <h2>Make your next season a more informed one.</h2>
+            <p class="cta-desc">Start with your farm. Discover what fits. Move forward with a clearer plan.</p>
+            <a href="#hero" class="btn btn-accent">
+                Find my farm's potential
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="#" class="logo footer-logo" aria-label="CropSwitch Home">
+                    <img src="cropswitch-logo-light.png" alt="CropSwitch — Analyze • Adapt • Grow" class="site-logo-img footer-logo-img">
+                </a>
+                <p>A clearer view of your land.<br>A better way to plan what's next.</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Explore</h4>
+                    <ul>
+                        <li><a href="login.html">Farmer & Agronomist Sign In</a></li>
+                        <li><a href="#crops">Crop discovery</a></li>
+                        <li><a href="dashboard.html">Farmer Command Center</a></li>
+                        <li><a href="#how-it-works">How it works</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Growing guides</a></li>
+                        <li><a href="#">Estimate assumptions</a></li>
+                        <li><a href="#">Help & contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>© 2026 CropSwitch. Grounded in possibility.</p>
+            <div class="footer-legal">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Live Satellite & Weather Telemetry</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== CROP DETAIL MODAL ========== -->
+    <div class="crop-modal-overlay" id="cropDetailModal" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="crop-modal-backdrop" id="cropModalBackdrop"></div>
+        <div class="crop-modal-container">
+            <button class="crop-modal-close" id="cropModalCloseBtn" aria-label="Close details">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            
+            <div class="crop-modal-hero">
+                <img id="modalCropImg" src="" alt="Crop image" class="modal-crop-image">
+                <div class="modal-hero-overlay"></div>
+                <div class="modal-hero-badges">
+                    <span class="modal-badge-fit" id="modalCropFit">Strong fit</span>
+                    <span class="modal-badge-cat" id="modalCropCategory">Grain / Row Crop</span>
+                </div>
+                <div class="modal-hero-info">
+                    <h2 id="modalCropName">Corn</h2>
+                    <p class="modal-crop-botanical" id="modalCropBotanical">Zea mays · Warm-season annual</p>
+                </div>
+            </div>
+
+            <div class="crop-modal-body">
+                <!-- Planting window banner -->
+                <div class="modal-quick-banner">
+                    <div class="modal-quick-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    </div>
+                    <div>
+                        <strong>Recommended Planting Window</strong>
+                        <span id="modalCropWindow">APR 20 – MAY 15 · IOWA</span>
+                    </div>
+                </div>
+
+                <!-- Agronomic Metrics Grid -->
+                <div class="modal-specs-grid">
+                    <div class="spec-card">
+                        <span class="spec-icon">💧</span>
+                        <div class="spec-content">
+                            <span class="spec-label">Water Need</span>
+                            <strong class="spec-val" id="modalCropWater">20-24 in / season</strong>
+                        </div>
+                    </div>
+                    <div class="spec-card">
+                        <span class="spec-icon">🌱</span>
+                        <div class="spec-content">
+                            <span class="spec-label">Seeding Depth</span>
+                            <strong class="spec-val" id="modalCropDepth">1.5 – 2.0 in</strong>
+                        </div>
+                    </div>
+                    <div class="spec-card">
+                        <span class="spec-icon">🌡️</span>
+                        <div class="spec-content">
+                            <span class="spec-label">Germination Temp</span>
+                            <strong class="spec-val" id="modalCropSoilTemp">50°F+ (10°C)</strong>
+                        </div>
+                    </div>
+                    <div class="spec-card">
+                        <span class="spec-icon">🧪</span>
+                        <div class="spec-content">
+                            <span class="spec-label">Optimal Soil pH</span>
+                            <strong class="spec-val" id="modalCropSoilPh">6.0 – 6.8</strong>
+                        </div>
+                    </div>
+                    <div class="spec-card">
+                        <span class="spec-icon">🌾</span>
+                        <div class="spec-content">
+                            <span class="spec-label">Target Yield</span>
+                            <strong class="spec-val" id="modalCropYield">180 – 225 bu/ac</strong>
+                        </div>
+                    </div>
+                    <div class="spec-card">
+                        <span class="spec-icon">⏱️</span>
+                        <div class="spec-content">
+                            <span class="spec-label">Maturity Window</span>
+                            <strong class="spec-val" id="modalCropMaturity">105 – 115 Days</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Agronomist Guidance -->
+                <div class="modal-section-block">
+                    <h4>🧑‍🌾 Agronomist Field Management</h4>
+                    <p id="modalCropTip" class="modal-tip-text">Wait for soil to hold at 50°F or warmer at 2-inch seed depth.</p>
+                </div>
+
+                <!-- Rotation & Companion Planting -->
+                <div class="modal-section-block">
+                    <h4>🔄 Recommended Crop Rotation & Companions</h4>
+                    <p id="modalCropRotation" class="modal-rotation-text">Best rotated with Soybeans or Alfalfa; follow with Cereal Rye or Winter Wheat to retain residual nitrogen and protect topsoil.</p>
+                </div>
+
+                <!-- NASA Satellite & Soil Insight -->
+                <div class="modal-satellite-box">
+                    <div class="sat-box-icon">🛰️</div>
+                    <div>
+                        <strong>NASA Earth Observation & Soil Moisture Guidance</strong>
+                        <p id="modalCropNasaInsight">SMAP surface soil moisture radar confirms ideal top-layer moisture (28-34% volumetric content) for uniform germination without seedling damping-off.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="crop-modal-footer">
+                <button class="btn btn-outline" id="modalAskAdvisorBtn">
+                    <span>💬 Ask Advisor about this crop</span>
+                </button>
+                <button class="btn btn-primary" id="modalCloseActionBtn">
+                    <span>Done / Close</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== FLOATING CHATBOT WIDGET ========== -->
+    <div class="crop-chatbot" id="cropChatbot">
+        <!-- Floating Launcher Button -->
+        <button class="chatbot-trigger" id="chatbotTrigger" aria-label="Open CropSwitch AI Advisor">
+            <div class="trigger-icon-wrap">
+                <svg class="trigger-icon-chat" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    <path d="M8 10h.01M12 10h.01M16 10h.01" stroke-width="2.8"></path>
+                </svg>
+                <svg class="trigger-icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </div>
+            <span class="trigger-pulse"></span>
+            <span class="trigger-tooltip">Ask CropSwitch AI</span>
+        </button>
+
+        <!-- Chat Window Panel -->
+        <div class="chatbot-panel" id="chatbotPanel">
+            <!-- Header -->
+            <div class="chatbot-header">
+                <div class="chatbot-profile">
+                    <div class="bot-avatar">
+                        <img src="cropswitch-icon.png" alt="CropSwitch Advisor" width="30" height="30" style="object-fit: contain; border-radius: 6px;">
+                        <span class="avatar-online"></span>
+                    </div>
+                    <div>
+                        <h4>CropSwitch Advisor</h4>
+                        <span class="bot-status">USDA & NASA Knowledge Base · Online</span>
+                    </div>
+                </div>
+                <div class="header-controls">
+                    <button class="chat-ctrl-btn" id="chatClearBtn" title="Clear chat history">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                    </button>
+                    <button class="chat-ctrl-btn" id="chatCloseBtn" title="Close chat">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Messages Stream -->
+            <div class="chatbot-messages" id="chatbotMessages">
+                <div class="msg-group bot">
+                    <div class="msg-bubble">
+                        <p>Hello! I am your <strong>CropSwitch Field Advisor</strong> 🌱.</p>
+                        <p style="margin-top: 6px;">Ask me anything about <strong>suitable crops for your soil</strong>, seasonal planting dates, soil water retention, or NASA satellite moisture indices!</p>
+                    </div>
+                    <span class="msg-time">Just now</span>
+                </div>
+
+                <!-- Suggested Chips -->
+                <div class="chatbot-quick-chips" id="chatbotChips">
+                    <button class="chip-btn" data-query="Which crop is best for clay soil?">🌾 Best for Clay soil?</button>
+                    <button class="chip-btn" data-query="When should I plant corn in Iowa?">🌽 Corn planting window?</button>
+                    <button class="chip-btn" data-query="How much water do soybeans need?">💧 Soybean water needs?</button>
+                    <button class="chip-btn" data-query="What winter cover crop do you recommend?">❄️ Best winter cover crop?</button>
+                    <button class="chip-btn" data-query="How does NASA satellite data help my farm?">🛰️ NASA satellite data?</button>
+                </div>
+            </div>
+
+            <!-- Input Bar -->
+            <form class="chatbot-input-bar" id="chatbotForm">
+                <input type="text" id="chatbotInput" placeholder="Ask about crops, soil, water, seasons..." autocomplete="off">
+                <button type="submit" id="chatSendBtn" aria-label="Send message">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Leaflet Map & Chart.js CDNs -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+    <script src="script.js?v=20261112c"></script>
+</body>
+</html>

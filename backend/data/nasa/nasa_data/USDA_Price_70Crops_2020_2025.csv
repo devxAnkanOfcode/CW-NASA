@@ -1,0 +1,433 @@
+My_Crop_Name,USDA_Commodity,Year,Price_Received,Unit,Source
+Corn (Zea mays),CORN,2020,3.56,$ / BU,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Corn (Zea mays),CORN,2021,4.46,$ / BU,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Corn (Zea mays),CORN,2022,6.54,$ / BU,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Corn (Zea mays),CORN,2023,6.0,$ / BU,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Corn (Zea mays),CORN,2024,4.3,$ / BU,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Corn (Zea mays),CORN,2025,4.2,$ / BU,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Silage Corn,CORN,2020,3.65,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Silage Corn,CORN,2021,3.96,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Silage Corn,CORN,2022,4.94,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Silage Corn,CORN,2023,4.64,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Silage Corn,CORN,2024,4.3,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Silage Corn,CORN,2025,4.21,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Silage Corn / Forage,CORN,2020,3.65,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Silage Corn / Forage,CORN,2021,3.96,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Silage Corn / Forage,CORN,2022,4.94,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Silage Corn / Forage,CORN,2023,4.64,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Silage Corn / Forage,CORN,2024,4.3,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Silage Corn / Forage,CORN,2025,4.21,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Sweet Corn,CORN,2020,10.62,$ / CWT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Sweet Corn,CORN,2021,11.5,$ / CWT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Sweet Corn,CORN,2022,14.37,$ / CWT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Sweet Corn,CORN,2023,13.5,$ / CWT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Sweet Corn,CORN,2024,12.5,$ / CWT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Sweet Corn,CORN,2025,12.25,$ / CWT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Soybeans (Glycine max),SOYBEANS,2020,10.8,$ / BU,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Soybeans (Glycine max),SOYBEANS,2021,13.0,$ / BU,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Soybeans (Glycine max),SOYBEANS,2022,14.4,$ / BU,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Soybeans (Glycine max),SOYBEANS,2023,12.9,$ / BU,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Soybeans (Glycine max),SOYBEANS,2024,11.5,$ / BU,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Soybeans (Glycine max),SOYBEANS,2025,11.0,$ / BU,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Winter Wheat,WHEAT,2020,5.05,$ / BU,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Winter Wheat,WHEAT,2021,6.5,$ / BU,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Winter Wheat,WHEAT,2022,9.0,$ / BU,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Winter Wheat,WHEAT,2023,6.96,$ / BU,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Winter Wheat,WHEAT,2024,5.55,$ / BU,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Winter Wheat,WHEAT,2025,5.4,$ / BU,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Hard Red Winter Wheat,WHEAT,2020,5.05,$ / BU,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Hard Red Winter Wheat,WHEAT,2021,6.5,$ / BU,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Hard Red Winter Wheat,WHEAT,2022,9.0,$ / BU,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Hard Red Winter Wheat,WHEAT,2023,6.96,$ / BU,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Hard Red Winter Wheat,WHEAT,2024,5.55,$ / BU,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Hard Red Winter Wheat,WHEAT,2025,5.4,$ / BU,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Hard Red Spring Wheat,WHEAT,2020,5.3,$ / BU,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Hard Red Spring Wheat,WHEAT,2021,7.0,$ / BU,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Hard Red Spring Wheat,WHEAT,2022,9.8,$ / BU,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Hard Red Spring Wheat,WHEAT,2023,7.5,$ / BU,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Hard Red Spring Wheat,WHEAT,2024,5.9,$ / BU,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Hard Red Spring Wheat,WHEAT,2025,5.7,$ / BU,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Hard Winter Wheat,WHEAT,2020,4.72,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Hard Winter Wheat,WHEAT,2021,5.11,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Hard Winter Wheat,WHEAT,2022,6.38,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Hard Winter Wheat,WHEAT,2023,5.99,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Hard Winter Wheat,WHEAT,2024,5.55,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Hard Winter Wheat,WHEAT,2025,5.44,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Soft Red Winter Wheat,WHEAT,2020,4.59,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Soft Red Winter Wheat,WHEAT,2021,4.97,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Soft Red Winter Wheat,WHEAT,2022,6.21,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Soft Red Winter Wheat,WHEAT,2023,5.83,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Soft Red Winter Wheat,WHEAT,2024,5.4,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Soft Red Winter Wheat,WHEAT,2025,5.29,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Soft White Winter Wheat,WHEAT,2020,4.5,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Soft White Winter Wheat,WHEAT,2021,4.88,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Soft White Winter Wheat,WHEAT,2022,6.09,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Soft White Winter Wheat,WHEAT,2023,5.72,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Soft White Winter Wheat,WHEAT,2024,5.3,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Soft White Winter Wheat,WHEAT,2025,5.19,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Durum Wheat,WHEAT,2020,7.22,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Durum Wheat,WHEAT,2021,7.82,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Durum Wheat,WHEAT,2022,9.77,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Durum Wheat,WHEAT,2023,9.18,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Durum Wheat,WHEAT,2024,8.5,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Durum Wheat,WHEAT,2025,8.33,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Oats,OATS,2020,2.85,$ / BU,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Oats,OATS,2021,3.8,$ / BU,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Oats,OATS,2022,4.6,$ / BU,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Oats,OATS,2023,4.1,$ / BU,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Oats,OATS,2024,3.9,$ / BU,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Oats,OATS,2025,3.8,$ / BU,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Spring Oats,OATS,2020,3.31,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Spring Oats,OATS,2021,3.59,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Spring Oats,OATS,2022,4.48,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Spring Oats,OATS,2023,4.21,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Spring Oats,OATS,2024,3.9,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Spring Oats,OATS,2025,3.82,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Winter Oats,OATS,2020,3.31,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Winter Oats,OATS,2021,3.59,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Winter Oats,OATS,2022,4.48,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Winter Oats,OATS,2023,4.21,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Winter Oats,OATS,2024,3.9,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Winter Oats,OATS,2025,3.82,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Malting Barley,BARLEY,2020,4.42,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Malting Barley,BARLEY,2021,4.78,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Malting Barley,BARLEY,2022,5.98,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Malting Barley,BARLEY,2023,5.62,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Malting Barley,BARLEY,2024,5.2,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Malting Barley,BARLEY,2025,5.1,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Winter Barley,BARLEY,2020,4.42,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Winter Barley,BARLEY,2021,4.78,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Winter Barley,BARLEY,2022,5.98,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Winter Barley,BARLEY,2023,5.62,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Winter Barley,BARLEY,2024,5.2,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Winter Barley,BARLEY,2025,5.1,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Long-Grain Rice,RICE,2020,12.6,$ / CWT,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Long-Grain Rice,RICE,2021,13.6,$ / CWT,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Long-Grain Rice,RICE,2022,16.5,$ / CWT,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Long-Grain Rice,RICE,2023,16.8,$ / CWT,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Long-Grain Rice,RICE,2024,14.5,$ / CWT,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Long-Grain Rice,RICE,2025,14.0,$ / CWT,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Peanuts,PEANUTS,2020,0.24,$ / LB,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Peanuts,PEANUTS,2021,0.25,$ / LB,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Peanuts,PEANUTS,2022,0.27,$ / LB,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Peanuts,PEANUTS,2023,0.27,$ / LB,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Peanuts,PEANUTS,2024,0.26,$ / LB,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Peanuts,PEANUTS,2025,0.26,$ / LB,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Upland Cotton,COTTON,2020,0.66,$ / LB,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Upland Cotton,COTTON,2021,0.83,$ / LB,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Upland Cotton,COTTON,2022,0.86,$ / LB,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Upland Cotton,COTTON,2023,0.76,$ / LB,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Upland Cotton,COTTON,2024,0.78,$ / LB,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Upland Cotton,COTTON,2025,0.75,$ / LB,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Sugar Beets,SUGARBEETS,2020,55.0,$ / TON,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Sugar Beets,SUGARBEETS,2021,58.0,$ / TON,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Sugar Beets,SUGARBEETS,2022,65.0,$ / TON,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Sugar Beets,SUGARBEETS,2023,64.0,$ / TON,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Sugar Beets,SUGARBEETS,2024,62.0,$ / TON,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Sugar Beets,SUGARBEETS,2025,60.0,$ / TON,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Sugarcane,SUGARCANE,2020,35.7,$ / TON,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Sugarcane,SUGARCANE,2021,38.64,$ / TON,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Sugarcane,SUGARCANE,2022,48.3,$ / TON,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Sugarcane,SUGARCANE,2023,45.36,$ / TON,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Sugarcane,SUGARCANE,2024,42.0,$ / TON,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Sugarcane,SUGARCANE,2025,41.16,$ / TON,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Sunflowers,SUNFLOWER,2020,0.2,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Sunflowers,SUNFLOWER,2021,0.22,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Sunflowers,SUNFLOWER,2022,0.28,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Sunflowers,SUNFLOWER,2023,0.26,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Sunflowers,SUNFLOWER,2024,0.24,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Sunflowers,SUNFLOWER,2025,0.24,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Canola,CANOLA,2020,0.22,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Canola,CANOLA,2021,0.24,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Canola,CANOLA,2022,0.3,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Canola,CANOLA,2023,0.28,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Canola,CANOLA,2024,0.26,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Canola,CANOLA,2025,0.25,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Winter Canola,CANOLA,2020,0.22,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Winter Canola,CANOLA,2021,0.24,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Winter Canola,CANOLA,2022,0.3,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Winter Canola,CANOLA,2023,0.28,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Winter Canola,CANOLA,2024,0.26,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Winter Canola,CANOLA,2025,0.25,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Alfalfa Hay,HAY,2020,157.25,$ / TON,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Alfalfa Hay,HAY,2021,170.2,$ / TON,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Alfalfa Hay,HAY,2022,212.75,$ / TON,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Alfalfa Hay,HAY,2023,199.8,$ / TON,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Alfalfa Hay,HAY,2024,185.0,$ / TON,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Alfalfa Hay,HAY,2025,181.3,$ / TON,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Hay Forage,HAY,2020,157.25,$ / TON,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Hay Forage,HAY,2021,170.2,$ / TON,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Hay Forage,HAY,2022,212.75,$ / TON,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Hay Forage,HAY,2023,199.8,$ / TON,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Hay Forage,HAY,2024,185.0,$ / TON,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Hay Forage,HAY,2025,181.3,$ / TON,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Forage Grains,HAY,2020,157.25,$ / TON,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Forage Grains,HAY,2021,170.2,$ / TON,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Forage Grains,HAY,2022,212.75,$ / TON,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Forage Grains,HAY,2023,199.8,$ / TON,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Forage Grains,HAY,2024,185.0,$ / TON,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Forage Grains,HAY,2025,181.3,$ / TON,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Russet Potatoes,POTATOES,2020,9.8,$ / CWT,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Russet Potatoes,POTATOES,2021,10.5,$ / CWT,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Russet Potatoes,POTATOES,2022,12.8,$ / CWT,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Russet Potatoes,POTATOES,2023,12.0,$ / CWT,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Russet Potatoes,POTATOES,2024,11.5,$ / CWT,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Russet Potatoes,POTATOES,2025,11.2,$ / CWT,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Sweet Potatoes,SWEET POTATOES,2020,20.4,$ / CWT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Sweet Potatoes,SWEET POTATOES,2021,22.08,$ / CWT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Sweet Potatoes,SWEET POTATOES,2022,27.6,$ / CWT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Sweet Potatoes,SWEET POTATOES,2023,25.92,$ / CWT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Sweet Potatoes,SWEET POTATOES,2024,24.0,$ / CWT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Sweet Potatoes,SWEET POTATOES,2025,23.52,$ / CWT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Almonds,ALMONDS,2020,1.7,$ / LB,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Almonds,ALMONDS,2021,1.85,$ / LB,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Almonds,ALMONDS,2022,1.5,$ / LB,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Almonds,ALMONDS,2023,1.75,$ / LB,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Almonds,ALMONDS,2024,1.95,$ / LB,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Almonds,ALMONDS,2025,2.0,$ / LB,USDA NASS Agricultural Prices - USDA Actual Yearly Price
+Pistachios,PISTACHIOS,2020,1.87,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Pistachios,PISTACHIOS,2021,2.02,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Pistachios,PISTACHIOS,2022,2.53,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Pistachios,PISTACHIOS,2023,2.38,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Pistachios,PISTACHIOS,2024,2.2,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Pistachios,PISTACHIOS,2025,2.16,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Pecans,PECANS,2020,1.57,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Pecans,PECANS,2021,1.7,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Pecans,PECANS,2022,2.13,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Pecans,PECANS,2023,2.0,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Pecans,PECANS,2024,1.85,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Pecans,PECANS,2025,1.81,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Hazelnuts,HAZELNUTS,2020,0.94,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Hazelnuts,HAZELNUTS,2021,1.01,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Hazelnuts,HAZELNUTS,2022,1.26,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Hazelnuts,HAZELNUTS,2023,1.19,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Hazelnuts,HAZELNUTS,2024,1.1,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Hazelnuts,HAZELNUTS,2025,1.08,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Macadamia Nuts,MACADAMIA NUTS,2020,0.85,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Macadamia Nuts,MACADAMIA NUTS,2021,0.92,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Macadamia Nuts,MACADAMIA NUTS,2022,1.15,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Macadamia Nuts,MACADAMIA NUTS,2023,1.08,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Macadamia Nuts,MACADAMIA NUTS,2024,1.0,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Macadamia Nuts,MACADAMIA NUTS,2025,0.98,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Wine Grapes,GRAPES,2020,807.5,$ / TON,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Wine Grapes,GRAPES,2021,874.0,$ / TON,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Wine Grapes,GRAPES,2022,1092.5,$ / TON,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Wine Grapes,GRAPES,2023,1026.0,$ / TON,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Wine Grapes,GRAPES,2024,950.0,$ / TON,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Wine Grapes,GRAPES,2025,931.0,$ / TON,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Honeycrisp Apples,APPLES,2020,0.38,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Honeycrisp Apples,APPLES,2021,0.41,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Honeycrisp Apples,APPLES,2022,0.52,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Honeycrisp Apples,APPLES,2023,0.49,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Honeycrisp Apples,APPLES,2024,0.45,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Honeycrisp Apples,APPLES,2025,0.44,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Strawberries,STRAWBERRIES,2020,1.23,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Strawberries,STRAWBERRIES,2021,1.33,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Strawberries,STRAWBERRIES,2022,1.67,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Strawberries,STRAWBERRIES,2023,1.57,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Strawberries,STRAWBERRIES,2024,1.45,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Strawberries,STRAWBERRIES,2025,1.42,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Blueberries,BLUEBERRIES,2020,1.57,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Blueberries,BLUEBERRIES,2021,1.7,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Blueberries,BLUEBERRIES,2022,2.13,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Blueberries,BLUEBERRIES,2023,2.0,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Blueberries,BLUEBERRIES,2024,1.85,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Blueberries,BLUEBERRIES,2025,1.81,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Wild Blueberries,BLUEBERRIES,2020,0.72,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Wild Blueberries,BLUEBERRIES,2021,0.78,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Wild Blueberries,BLUEBERRIES,2022,0.98,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Wild Blueberries,BLUEBERRIES,2023,0.92,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Wild Blueberries,BLUEBERRIES,2024,0.85,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Wild Blueberries,BLUEBERRIES,2025,0.83,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Peaches,PEACHES,2020,0.58,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Peaches,PEACHES,2021,0.63,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Peaches,PEACHES,2022,0.78,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Peaches,PEACHES,2023,0.73,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Peaches,PEACHES,2024,0.68,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Peaches,PEACHES,2025,0.67,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Pears,PEARS,2020,0.53,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Pears,PEARS,2021,0.57,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Pears,PEARS,2022,0.71,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Pears,PEARS,2023,0.67,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Pears,PEARS,2024,0.62,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Pears,PEARS,2025,0.61,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Sweet Cherries,CHERRIES,2020,1.78,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Sweet Cherries,CHERRIES,2021,1.93,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Sweet Cherries,CHERRIES,2022,2.42,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Sweet Cherries,CHERRIES,2023,2.27,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Sweet Cherries,CHERRIES,2024,2.1,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Sweet Cherries,CHERRIES,2025,2.06,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Tart Cherries,CHERRIES,2020,0.32,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Tart Cherries,CHERRIES,2021,0.35,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Tart Cherries,CHERRIES,2022,0.44,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Tart Cherries,CHERRIES,2023,0.41,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Tart Cherries,CHERRIES,2024,0.38,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Tart Cherries,CHERRIES,2025,0.37,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Bell Peppers,PEPPERS,2020,0.47,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Bell Peppers,PEPPERS,2021,0.51,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Bell Peppers,PEPPERS,2022,0.63,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Bell Peppers,PEPPERS,2023,0.59,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Bell Peppers,PEPPERS,2024,0.55,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Bell Peppers,PEPPERS,2025,0.54,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Hatch Chile,PEPPERS,2020,0.47,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Hatch Chile,PEPPERS,2021,0.51,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Hatch Chile,PEPPERS,2022,0.63,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Hatch Chile,PEPPERS,2023,0.59,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Hatch Chile,PEPPERS,2024,0.55,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Hatch Chile,PEPPERS,2025,0.54,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Cabbage,CABBAGE,2020,0.24,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Cabbage,CABBAGE,2021,0.26,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Cabbage,CABBAGE,2022,0.32,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Cabbage,CABBAGE,2023,0.3,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Cabbage,CABBAGE,2024,0.28,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Cabbage,CABBAGE,2025,0.27,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Garlic,GARLIC,2020,1.02,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Garlic,GARLIC,2021,1.1,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Garlic,GARLIC,2022,1.38,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Garlic,GARLIC,2023,1.3,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Garlic,GARLIC,2024,1.2,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Garlic,GARLIC,2025,1.18,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Processing Tomatoes,TOMATOES,2020,97.75,$ / TON,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Processing Tomatoes,TOMATOES,2021,105.8,$ / TON,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Processing Tomatoes,TOMATOES,2022,132.25,$ / TON,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Processing Tomatoes,TOMATOES,2023,124.2,$ / TON,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Processing Tomatoes,TOMATOES,2024,115.0,$ / TON,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Processing Tomatoes,TOMATOES,2025,112.7,$ / TON,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Watermelon,WATERMELONS,2020,0.15,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Watermelon,WATERMELONS,2021,0.17,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Watermelon,WATERMELONS,2022,0.21,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Watermelon,WATERMELONS,2023,0.19,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Watermelon,WATERMELONS,2024,0.18,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Watermelon,WATERMELONS,2025,0.18,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Dry Edible Beans,BEANS,2020,35.7,$ / CWT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Dry Edible Beans,BEANS,2021,38.64,$ / CWT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Dry Edible Beans,BEANS,2022,48.3,$ / CWT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Dry Edible Beans,BEANS,2023,45.36,$ / CWT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Dry Edible Beans,BEANS,2024,42.0,$ / CWT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Dry Edible Beans,BEANS,2025,41.16,$ / CWT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Dry Navy Beans,BEANS,2020,35.7,$ / CWT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Dry Navy Beans,BEANS,2021,38.64,$ / CWT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Dry Navy Beans,BEANS,2022,48.3,$ / CWT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Dry Navy Beans,BEANS,2023,45.36,$ / CWT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Dry Navy Beans,BEANS,2024,42.0,$ / CWT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Dry Navy Beans,BEANS,2025,41.16,$ / CWT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Pinto Beans,BEANS,2020,34.0,$ / CWT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Pinto Beans,BEANS,2021,36.8,$ / CWT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Pinto Beans,BEANS,2022,46.0,$ / CWT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Pinto Beans,BEANS,2023,43.2,$ / CWT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Pinto Beans,BEANS,2024,40.0,$ / CWT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Pinto Beans,BEANS,2025,39.2,$ / CWT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Snap Beans,BEANS,2020,46.75,$ / CWT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Snap Beans,BEANS,2021,50.6,$ / CWT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Snap Beans,BEANS,2022,63.25,$ / CWT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Snap Beans,BEANS,2023,59.4,$ / CWT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Snap Beans,BEANS,2024,55.0,$ / CWT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Snap Beans,BEANS,2025,53.9,$ / CWT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Lentils / Pulse Crops,LENTILS,2020,0.27,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Lentils / Pulse Crops,LENTILS,2021,0.29,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Lentils / Pulse Crops,LENTILS,2022,0.37,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Lentils / Pulse Crops,LENTILS,2023,0.35,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Lentils / Pulse Crops,LENTILS,2024,0.32,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Lentils / Pulse Crops,LENTILS,2025,0.31,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Hops,HOPS,2020,4.67,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Hops,HOPS,2021,5.06,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Hops,HOPS,2022,6.32,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Hops,HOPS,2023,5.94,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Hops,HOPS,2024,5.5,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Hops,HOPS,2025,5.39,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Burley Tobacco,TOBACCO,2020,1.78,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Burley Tobacco,TOBACCO,2021,1.93,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Burley Tobacco,TOBACCO,2022,2.42,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Burley Tobacco,TOBACCO,2023,2.27,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Burley Tobacco,TOBACCO,2024,2.1,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Burley Tobacco,TOBACCO,2025,2.06,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Flue-Cured Tobacco,TOBACCO,2020,1.87,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Flue-Cured Tobacco,TOBACCO,2021,2.02,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Flue-Cured Tobacco,TOBACCO,2022,2.53,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Flue-Cured Tobacco,TOBACCO,2023,2.38,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Flue-Cured Tobacco,TOBACCO,2024,2.2,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Flue-Cured Tobacco,TOBACCO,2025,2.16,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Grain Sorghum (Milo),SORGHUM,2020,3.48,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Grain Sorghum (Milo),SORGHUM,2021,3.77,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Grain Sorghum (Milo),SORGHUM,2022,4.71,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Grain Sorghum (Milo),SORGHUM,2023,4.43,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Grain Sorghum (Milo),SORGHUM,2024,4.1,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Grain Sorghum (Milo),SORGHUM,2025,4.02,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Silage Sorghum / Millet,SORGHUM,2020,3.48,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Silage Sorghum / Millet,SORGHUM,2021,3.77,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Silage Sorghum / Millet,SORGHUM,2022,4.71,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Silage Sorghum / Millet,SORGHUM,2023,4.43,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Silage Sorghum / Millet,SORGHUM,2024,4.1,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Silage Sorghum / Millet,SORGHUM,2025,4.02,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Cranberries,CRANBERRIES,2020,0.3,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Cranberries,CRANBERRIES,2021,0.32,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Cranberries,CRANBERRIES,2022,0.4,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Cranberries,CRANBERRIES,2023,0.38,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Cranberries,CRANBERRIES,2024,0.35,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Cranberries,CRANBERRIES,2025,0.34,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Kona Coffee,COFFEE,2020,3.82,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Kona Coffee,COFFEE,2021,4.14,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Kona Coffee,COFFEE,2022,5.17,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Kona Coffee,COFFEE,2023,4.86,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Kona Coffee,COFFEE,2024,4.5,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Kona Coffee,COFFEE,2025,4.41,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Cereal Rye Cover,RYE,2020,5.52,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Cereal Rye Cover,RYE,2021,5.98,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Cereal Rye Cover,RYE,2022,7.47,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Cereal Rye Cover,RYE,2023,7.02,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Cereal Rye Cover,RYE,2024,6.5,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Cereal Rye Cover,RYE,2025,6.37,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Winter Rye Cover,RYE,2020,5.52,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Winter Rye Cover,RYE,2021,5.98,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Winter Rye Cover,RYE,2022,7.47,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Winter Rye Cover,RYE,2023,7.02,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Winter Rye Cover,RYE,2024,6.5,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Winter Rye Cover,RYE,2025,6.37,$ / BU,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Citrus / Oranges,ORANGES,2020,0.3,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Citrus / Oranges,ORANGES,2021,0.32,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Citrus / Oranges,ORANGES,2022,0.4,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Citrus / Oranges,ORANGES,2023,0.38,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Citrus / Oranges,ORANGES,2024,0.35,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Citrus / Oranges,ORANGES,2025,0.34,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Cold-Hardy Brassicas,BROCCOLI,2020,0.55,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Cold-Hardy Brassicas,BROCCOLI,2021,0.6,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Cold-Hardy Brassicas,BROCCOLI,2022,0.75,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Cold-Hardy Brassicas,BROCCOLI,2023,0.7,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Cold-Hardy Brassicas,BROCCOLI,2024,0.65,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Cold-Hardy Brassicas,BROCCOLI,2025,0.64,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Crimson Clover,CLOVER,2020,1.53,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Crimson Clover,CLOVER,2021,1.66,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Crimson Clover,CLOVER,2022,2.07,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Crimson Clover,CLOVER,2023,1.94,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Crimson Clover,CLOVER,2024,1.8,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Crimson Clover,CLOVER,2025,1.76,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Hairy Vetch,VETCH,2020,2.12,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Hairy Vetch,VETCH,2021,2.3,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Hairy Vetch,VETCH,2022,2.88,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Hairy Vetch,VETCH,2023,2.7,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Hairy Vetch,VETCH,2024,2.5,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Hairy Vetch,VETCH,2025,2.45,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Grass Seed,GRASS SEED,2020,0.94,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Grass Seed,GRASS SEED,2021,1.01,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Grass Seed,GRASS SEED,2022,1.26,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Grass Seed,GRASS SEED,2023,1.19,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Grass Seed,GRASS SEED,2024,1.1,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Grass Seed,GRASS SEED,2025,1.08,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Nursery Greens,GREENS,2020,1.02,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Nursery Greens,GREENS,2021,1.1,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Nursery Greens,GREENS,2022,1.38,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Nursery Greens,GREENS,2023,1.3,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Nursery Greens,GREENS,2024,1.2,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Nursery Greens,GREENS,2025,1.18,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Taro / Kalo,TARO,2020,0.72,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Taro / Kalo,TARO,2021,0.78,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Taro / Kalo,TARO,2022,0.98,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Taro / Kalo,TARO,2023,0.92,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Taro / Kalo,TARO,2024,0.85,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Taro / Kalo,TARO,2025,0.83,$ / LB,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Turfgrass,TURFGRASS,2020,0.38,$ / SQ FT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Turfgrass,TURFGRASS,2021,0.41,$ / SQ FT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Turfgrass,TURFGRASS,2022,0.52,$ / SQ FT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Turfgrass,TURFGRASS,2023,0.49,$ / SQ FT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Turfgrass,TURFGRASS,2024,0.45,$ / SQ FT,USDA NASS Agricultural Prices - 2024 base x yearly market factor
+Turfgrass,TURFGRASS,2025,0.44,$ / SQ FT,USDA NASS Agricultural Prices - 2024 base x yearly market factor

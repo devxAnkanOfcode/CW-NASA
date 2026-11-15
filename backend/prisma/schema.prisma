@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id              String    @id @default(uuid()) @db.Uuid
+  name            String?   @db.VarChar(120)
+  email           String    @unique @db.VarChar(254)
+  passwordHash    String    @map("password_hash") @db.VarChar(255)
+  role            String    @default("grower") @db.VarChar(30)
+  emailVerifiedAt DateTime? @map("email_verified_at") @db.Timestamptz(3)
+  createdAt       DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt       DateTime  @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  farms Farm[]
+
+  @@map("users")
+}
+
+model Farm {
+  id        String   @id @default(uuid()) @db.Uuid
+  name      String   @db.VarChar(150)
+  operator  String?  @db.VarChar(120)
+  location  String?  @db.VarChar(255)
+  userId    String   @map("user_id") @db.Uuid
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  parcels Parcel[]
+
+  @@index([userId])
+  @@map("farms")
+}
+
+model Parcel {
+  id         String   @id @default(uuid()) @db.Uuid
+  name       String   @db.VarChar(150)
+  crop       String   @db.VarChar(100)
+  acres      Float
+  location   String?  @db.VarChar(255)
+  irrigation String?  @db.VarChar(100)
+  latitude   Float?
+  longitude  Float?
+  stage      String?  @db.VarChar(100)
+  soilType   String?  @map("soil_type") @db.VarChar(100)
+  farmId     String   @map("farm_id") @db.Uuid
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt  DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  farm Farm @relation(fields: [farmId], references: [id], onDelete: Cascade)
+
+  @@index([farmId])
+  @@map("parcels")
+}
+
+model Session {
+  sid    String   @id(map: "session_pkey") @db.VarChar
+  sess   Json
+  expire DateTime @db.Timestamp(6)
+
+  @@index([expire], map: "IDX_session_expire")
+  @@map("user_sessions")
+}

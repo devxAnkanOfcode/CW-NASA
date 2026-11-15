@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CropSwitch AI Agronomist — 24/7 Precision Farming Intelligence</title>
+    <link rel="icon" type="image/png" href="cropswitch-icon.png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: #F4F8F4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .chat-app-nav {
+            background: var(--white);
+            border-bottom: 1px solid var(--border-light);
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .chat-app-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--green-dark);
+        }
+
+        .chat-app-brand img {
+            height: 32px;
+            width: auto;
+        }
+
+        .chat-app-badge {
+            background: #E8F5E9;
+            color: #166534;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: var(--radius-full);
+            border: 1px solid #BBF7D0;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .chat-app-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .chat-app-main {
+            flex: 1;
+            display: flex;
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 24px;
+            gap: 24px;
+            height: calc(100vh - 65px);
+            box-sizing: border-box;
+        }
+
+        .chat-sidebar {
+            width: 340px;
+            background: var(--white);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            padding: 24px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            overflow-y: auto;
+            box-shadow: 0 4px 20px rgba(27, 55, 38, 0.04);
+        }
+
+        .chat-sidebar h3 {
+            font-family: var(--font-serif);
+            font-size: 18px;
+            color: var(--green-dark);
+            margin: 0 0 4px 0;
+        }
+
+        .chat-sidebar-sub {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin: 0 0 12px 0;
+        }
+
+        .chat-topic-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 14px;
+            background: var(--cream);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+            font-family: var(--font-sans);
+        }
+
+        .chat-topic-btn:hover {
+            background: #E8F5E9;
+            border-color: var(--green-mid);
+            transform: translateX(3px);
+        }
+
+        .chat-topic-btn span.icon {
+            font-size: 20px;
+        }
+
+        .chat-topic-btn strong {
+            display: block;
+            font-size: 12.5px;
+            color: var(--green-dark);
+        }
+
+        .chat-topic-btn span.desc {
+            display: block;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .chat-window-card {
+            flex: 1;
+            background: var(--white);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 6px 24px rgba(27, 55, 38, 0.05);
+        }
+
+        .chat-window-header {
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #FAFBF9;
+        }
+
+        .chat-window-header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .chat-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--green-dark);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .chat-window-header-left h2 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--green-dark);
+            margin: 0;
+        }
+
+        .chat-window-header-left span {
+            font-size: 11.5px;
+            color: #16A34A;
+            font-weight: 600;
+        }
+
+        .chat-content-log {
+            flex: 1;
+            overflow-y: auto;
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            background: #FCFDFB;
+        }
+
+        .chat-content-log .msg-group {
+            display: flex;
+            gap: 12px;
+            max-width: 82%;
+        }
+
+        .chat-content-log .msg-group.user {
+            align-self: flex-end;
+            flex-direction: row-reverse;
+        }
+
+        .chat-content-log .msg-group.bot {
+            align-self: flex-start;
+        }
+
+        .chat-content-log .msg-avatar {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #E8F5E9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .chat-content-log .msg-bubble {
+            padding: 16px 20px;
+            border-radius: 18px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .chat-content-log .msg-group.user .msg-bubble {
+            background: var(--green-dark);
+            color: var(--white);
+            border-bottom-right-radius: 4px;
+        }
+
+        .chat-content-log .msg-group.bot .msg-bubble {
+            background: var(--white);
+            color: var(--text-primary);
+            border: 1px solid var(--border-light);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            border-bottom-left-radius: 4px;
+        }
+
+        .chat-input-bar-wrap {
+            padding: 18px 24px;
+            background: var(--white);
+            border-top: 1px solid var(--border-light);
+        }
+
+        .chat-input-bar-wrap form {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .chat-input-bar-wrap input {
+            flex: 1;
+            padding: 14px 22px;
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-full);
+            font-size: 14px;
+            font-family: var(--font-sans);
+            outline: none;
+            background: #FAFBF9;
+            transition: all 0.2s ease;
+        }
+
+        .chat-input-bar-wrap input:focus {
+            border-color: var(--green-mid);
+            background: var(--white);
+            box-shadow: 0 0 0 3px rgba(45, 90, 61, 0.12);
+        }
+
+        .chat-send-action-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--green-dark);
+            color: var(--white);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .chat-send-action-btn:hover {
+            background: var(--green-mid);
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 900px) {
+            .chat-app-main {
+                flex-direction: column;
+                height: auto;
+                padding: 14px;
+            }
+            .chat-sidebar {
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .chat-window-card {
+                height: 600px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top App Navigation -->
+    <header class="chat-app-nav">
+        <a href="index.html" class="chat-app-brand">
+            <img src="cropswitch-logo.png" alt="CropSwitch Logo">
+            <span class="chat-app-badge">🌱 AI Agronomist Copilot</span>
+        </a>
+        <div class="chat-app-actions">
+            <a href="index.html" class="btn btn-sm" style="background:transparent; border:1px solid var(--border); color:var(--text-secondary);">← Back to Website</a>
+            <a href="dashboard.html" class="btn btn-sm btn-primary">Open Farm Dashboard →</a>
+        </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="chat-app-main">
+        <!-- Sidebar with Topics -->
+        <aside class="chat-sidebar">
+            <div>
+                <h3>🌾 Agronomy Topics</h3>
+                <p class="chat-sidebar-sub">Select any query to consult your live agronomist</p>
+            </div>
+
+            <button type="button" class="chat-topic-btn" data-query="What crops grow best in loam soil with moderate irrigation?">
+                <span class="icon">🪴</span>
+                <div>
+                    <strong>Loam Soil Management</strong>
+                    <span class="desc">Water holding capacity & aeration</span>
+                </div>
+            </button>
+
+            <button type="button" class="chat-topic-btn" data-query="How does heavy clay soil affect crop root growth and irrigation frequency?">
+                <span class="icon">🧱</span>
+                <div>
+                    <strong>Clay Soil Infiltration</strong>
+                    <span class="desc">Compaction defense & drainage</span>
+                </div>
+            </button>
+
+            <button type="button" class="chat-topic-btn" data-query="What is the recommended corn and soybean planting window for Iowa and Midwest states?">
+                <span class="icon">🌽</span>
+                <div>
+                    <strong>Midwest Row Crops</strong>
+                    <span class="desc">Corn, Soybeans & Soil temp triggers</span>
+                </div>
+            </button>
+
+            <button type="button" class="chat-topic-btn" data-query="What are the top agricultural crops and planting seasons for Texas and Georgia?">
+                <span class="icon">🥜</span>
+                <div>
+                    <strong>Southern Grains & Cotton</strong>
+                    <span class="desc">Peanuts, Upland Cotton & Sorghum</span>
+                </div>
+            </button>
+
+            <button type="button" class="chat-topic-btn" data-query="How does NASA SMAP soil moisture and NDVI vegetation index inform field management?">
+                <span class="icon">🛰️</span>
+                <div>
+                    <strong>NASA Satellite Radar</strong>
+                    <span class="desc">Topsoil moisture & NDVI vegetative health</span>
+                </div>
+            </button>
+
+            <button type="button" class="chat-topic-btn" data-query="What are the best winter cover crops for nitrogen fixing and weed suppression?">
+                <span class="icon">🌿</span>
+                <div>
+                    <strong>Cover Crop Strategies</strong>
+                    <span class="desc">Cereal rye, hairy vetch, crimson clover</span>
+                </div>
+            </button>
+
+            <button type="button" class="chat-topic-btn" data-query="How do wind speed and vapor pressure deficit affect herbicide spray windows?">
+                <span class="icon">💨</span>
+                <div>
+                    <strong>Spray Windows & Inversion</strong>
+                    <span class="desc">Wind drift (&gt;12 mph) & high VPD stress</span>
+                </div>
+            </button>
+        </aside>
+
+        <!-- Chat Window Card -->
+        <section class="chat-window-card">
+            <div class="chat-window-header">
+                <div class="chat-window-header-left">
+                    <div class="chat-avatar">🌱</div>
+                    <div>
+                        <h2>CropSwitch AI Agronomist</h2>
+                        <span>● Online & Telemetry-Aware</span>
+                    </div>
+                </div>
+                <button type="button" id="clearFullChatBtn" class="btn btn-sm" style="background:var(--cream); border:1px solid var(--border); color:var(--text-secondary); font-size:12px;">Clear History</button>
+            </div>
+
+            <!-- Messages Log -->
+            <div class="chat-content-log" id="fullChatMessages">
+                <div class="msg-group bot">
+                    <div class="msg-avatar">🌱</div>
+                    <div class="msg-bubble">
+                        Welcome to your dedicated <strong>CropSwitch Precision Agronomist workspace</strong>!
+                        <br><br>
+                        I can help you analyze soil texture (clay, loam, sand), evaluate state-specific planting calendars across all 50 U.S. states, interpret NASA SMAP radar data, assess chemical spray windows, and optimize fertilizer inputs.
+                        <br><br>
+                        What field or crop would you like to discuss today?
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Bar -->
+            <div class="chat-input-bar-wrap">
+                <form id="fullChatForm">
+                    <input type="text" id="fullChatInput" placeholder="Ask your agronomy question..." autocomplete="off">
+                    <button type="submit" class="chat-send-action-btn" aria-label="Send message">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        // Dedicated Full Page Chat Controller
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('fullChatForm');
+            const input = document.getElementById('fullChatInput');
+            const log = document.getElementById('fullChatMessages');
+            const clearBtn = document.getElementById('clearFullChatBtn');
+            const topicBtns = document.querySelectorAll('.chat-topic-btn');
+
+            function addMessage(sender, text) {
+                const group = document.createElement('div');
+                group.className = `msg-group ${sender}`;
+                const avatar = document.createElement('div');
+                avatar.className = 'msg-avatar';
+                avatar.textContent = (sender === 'user') ? '🧑‍🌾' : '🌱';
+
+                const bubble = document.createElement('div');
+                bubble.className = 'msg-bubble';
+                bubble.innerHTML = text;
+
+                group.appendChild(avatar);
+                group.appendChild(bubble);
+                log.appendChild(group);
+                log.scrollTop = log.scrollHeight;
+            }
+
+            function showTyping() {
+                const typing = document.createElement('div');
+                typing.className = 'msg-group bot';
+                typing.id = 'fullTyping';
+                typing.innerHTML = `
+                    <div class="msg-avatar">🌱</div>
+                    <div class="msg-bubble" style="display:inline-flex; align-items:center; gap:6px;">
+                        <span>Analyzing agronomic models...</span>
+                    </div>
+                `;
+                log.appendChild(typing);
+                log.scrollTop = log.scrollHeight;
+            }
+
+            function removeTyping() {
+                const el = document.getElementById('fullTyping');
+                if (el) el.remove();
+            }
+
+            function handleQuery(text) {
+                if (!text || !text.trim()) return;
+                const query = text.trim();
+                addMessage('user', query);
+                showTyping();
+
+                setTimeout(() => {
+                    removeTyping();
+                    const reply = (typeof generateBotResponse === 'function') ? generateBotResponse(query) : 'I am processing your agronomy query. What soil or crop would you like to review?';
+                    addMessage('bot', reply);
+                }, 500);
+            }
+
+            if (form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    if (!input) return;
+                    const val = input.value.trim();
+                    if (!val) return;
+                    input.value = '';
+                    handleQuery(val);
+                });
+            }
+
+            topicBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const q = btn.getAttribute('data-query');
+                    if (q) {
+                        if (input) input.value = '';
+                        handleQuery(q);
+                    }
+                });
+            });
+
+            if (clearBtn) {
+                clearBtn.addEventListener('click', () => {
+                    log.innerHTML = `
+                        <div class="msg-group bot">
+                            <div class="msg-avatar">🌱</div>
+                            <div class="msg-bubble">
+                                Chat history cleared. How can I assist your farm today?
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+        });
+    </script>
+</body>
+</html>

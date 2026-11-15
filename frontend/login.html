@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In — CropSwitch | Farm Intelligence & Satellite Agronomy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="cropswitch-icon.png">
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+    <!-- Toast Notification for Interactive Feedback -->
+    <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+    <div class="auth-wrapper">
+        <!-- ========== LEFT BRAND / TELEMETRY PANEL ========== -->
+        <aside class="auth-hero-panel">
+            <div class="hero-panel-bg"></div>
+            <div class="hero-panel-overlay"></div>
+
+            <div class="hero-panel-content">
+                <!-- Top Brand Header -->
+                <div class="hero-panel-top">
+                    <a href="index.html" class="hero-brand" aria-label="Return to CropSwitch home">
+                        <img src="cropswitch-logo-light.png" alt="CropSwitch" class="hero-logo-img" onerror="this.src='cropswitch-logo.png';">
+                        <span id="textLogo" class="hero-text-logo" style="display: none;">🌱 CropSwitch</span>
+                    </a>
+                    <div class="telemetry-pill">
+                        <span class="live-dot"></span>
+                        <span>NASA SMAP & NOAA Online</span>
+                    </div>
+                </div>
+
+                <!-- Central Pitch & Stats -->
+                <div class="hero-panel-main">
+                    <span class="panel-eyebrow">AGRICULTURAL INTELLIGENCE PLATFORM</span>
+                    <h1 class="panel-heading">Grow with confidence from seed to harvest.</h1>
+                    <p class="panel-sub">
+                        Access real-time soil moisture indices, thermal germination forecasts, and tailored field economics across 3,000+ U.S. counties.
+                    </p>
+
+                    <!-- Feature Cards -->
+                    <div class="panel-stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">🛰️</div>
+                            <div class="stat-body">
+                                <strong>NASA Earthdata</strong>
+                                <span>High-res soil & moisture passes</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">🌡️</div>
+                            <div class="stat-body">
+                                <strong>50°F Seedbed Radar</strong>
+                                <span>Optimal planting window alerts</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">🌾</div>
+                            <div class="stat-body">
+                                <strong>50+ Crop Cultivars</strong>
+                                <span>Loam, clay & sand suitability</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">📊</div>
+                            <div class="stat-body">
+                                <strong>100% Live Open Access</strong>
+                                <span>NASA Earth Observation & Weather</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Status -->
+                <div class="hero-panel-bottom">
+                    <span>© 2026 CropSwitch Agronomy Inc.</span>
+                    <a href="index.html" class="panel-back-link">
+                        <span>← Back to Field Explorer</span>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ========== RIGHT FORM PANEL ========== -->
+        <main class="auth-form-panel">
+            <div class="form-container">
+                <!-- Mobile-Only Brand Header -->
+                <div class="mobile-header">
+                    <a href="index.html" class="mobile-brand">
+                        <img src="cropswitch-logo.png" alt="CropSwitch" class="mobile-logo-img" onerror="this.style.display='none'; document.getElementById('mobileTextLogo').style.display='block';">
+                        <span id="mobileTextLogo" class="hero-text-logo" style="display: none;">🌱 CropSwitch</span>
+                    </a>
+                    <a href="index.html" class="mobile-back-btn">← Back to Site</a>
+                </div>
+
+                <!-- Auth Navigation Tabs -->
+                <div class="auth-tabs" role="tablist">
+                    <button class="tab-btn active" id="tabSignIn" role="tab" aria-selected="true" aria-controls="signInFormPanel">
+                        Sign In
+                    </button>
+                    <button class="tab-btn" id="tabSignUp" role="tab" aria-selected="false" aria-controls="signUpFormPanel">
+                        Create Account
+                    </button>
+                    <div class="tab-slider" id="tabSlider"></div>
+                </div>
+
+                <!-- ==================== TAB 1: SIGN IN ==================== -->
+                <div class="form-panel active" id="signInFormPanel" role="tabpanel">
+                    <div class="form-intro">
+                        <h2>Welcome back</h2>
+                        <p>Enter your field credentials to access your farm dashboard.</p>
+                    </div>
+
+                    <form id="signInForm" novalidate>
+                        <!-- Email / Farm ID Input -->
+                        <div class="input-group">
+                            <label for="loginEmail">Email or Farm Identifier</label>
+                            <div class="input-wrapper">
+                                <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                                <input 
+                                    type="email" 
+                                    id="loginEmail" 
+                                    name="email"
+                                    placeholder="e.g. marcus@cedarcreek.farm" 
+                                    required 
+                                    autocomplete="username">
+                            </div>
+                            <span class="field-error" id="loginEmailError"></span>
+                        </div>
+
+                        <!-- Password Input -->
+                        <div class="input-group">
+                            <div class="label-row">
+                                <label for="loginPassword">Password</label>
+                                <button type="button" class="text-link-btn" id="openForgotBtn">Forgot password?</button>
+                            </div>
+                            <div class="input-wrapper">
+                                <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                </svg>
+                                <input 
+                                    type="password" 
+                                    id="loginPassword" 
+                                    name="password"
+                                    placeholder="Enter your password" 
+                                    required 
+                                    autocomplete="current-password">
+                                <button type="button" class="toggle-password-btn" aria-label="Toggle password visibility" data-target="loginPassword">
+                                    <!-- Eye Icon -->
+                                    <svg class="eye-open" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                    <!-- Eye Off Icon (hidden initially) -->
+                                    <svg class="eye-closed" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                                        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                                        <line x1="1" y1="1" x2="23" y2="23"></line>
+                                    </svg>
+                                </button>
+                            </div>
+                            <span class="field-error" id="loginPasswordError"></span>
+                        </div>
+
+                        <!-- Remember Me & County Select -->
+                        <div class="form-options">
+                            <label class="custom-checkbox">
+                                <input type="checkbox" id="rememberMe" checked>
+                                <span class="checkmark"></span>
+                                <span class="checkbox-label">Keep me signed in for 30 days</span>
+                            </label>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="submit-btn" id="signInSubmitBtn">
+                            <span class="btn-text">Sign In to Farm Dashboard</span>
+                            <span class="btn-spinner" aria-hidden="true"></span>
+                            <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- ==================== TAB 2: CREATE ACCOUNT ==================== -->
+                <div class="form-panel" id="signUpFormPanel" role="tabpanel" style="display: none;">
+                    <div class="form-intro">
+                        <h2>Start your farm plan</h2>
+                        <p>Free field telemetry & seasonal crop matching for U.S. growers.</p>
+                    </div>
+
+                    <form id="signUpForm" novalidate>
+                        <!-- Full Name & Farm Name Row -->
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label for="regName">Your Name</label>
+                                <div class="input-wrapper">
+                                    <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="12" cy="7" r="4"></circle>
+                                    </svg>
+                                    <input type="text" id="regName" placeholder="Your full name" required>
+                                </div>
+                                <span class="field-error" id="regNameError"></span>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="regFarm">Farm / Operation Name</label>
+                                <div class="input-wrapper">
+                                    <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                                    </svg>
+                                    <input type="text" id="regFarm" placeholder="Your farm or ranch name" required>
+                                </div>
+                                <span class="field-error" id="regFarmError"></span>
+                            </div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="input-group">
+                            <label for="regEmail">Email Address</label>
+                            <div class="input-wrapper">
+                                <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                                <input type="email" id="regEmail" placeholder="sarah@prairieridge.farm" required>
+                            </div>
+                            <span class="field-error" id="regEmailError"></span>
+                        </div>
+
+                        <!-- Primary Role Selector -->
+                        <div class="input-group">
+                            <label>Primary Agricultural Role</label>
+                            <div class="role-grid">
+                                <label class="role-option active">
+                                    <input type="radio" name="userRole" value="grower" checked>
+                                    <span class="role-box">
+                                        <span class="role-emoji">🌾</span>
+                                        <span class="role-name">Grower / Farmer</span>
+                                    </span>
+                                </label>
+                                <label class="role-option">
+                                    <input type="radio" name="userRole" value="agronomist">
+                                    <span class="role-box">
+                                        <span class="role-emoji">🔬</span>
+                                        <span class="role-name">Agronomist</span>
+                                    </span>
+                                </label>
+                                <label class="role-option">
+                                    <input type="radio" name="userRole" value="researcher">
+                                    <span class="role-box">
+                                        <span class="role-emoji">🛰️</span>
+                                        <span class="role-name">Researcher</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Password with Strength Meter -->
+                        <div class="input-group">
+                            <label for="regPassword">Create Secure Password</label>
+                            <div class="input-wrapper">
+                                <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                </svg>
+                                <input 
+                                    type="password" 
+                                    id="regPassword" 
+                                    placeholder="At least 8 characters" 
+                                    required 
+                                    autocomplete="new-password">
+                                <button type="button" class="toggle-password-btn" aria-label="Toggle password visibility" data-target="regPassword">
+                                    <svg class="eye-open" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                    <svg class="eye-closed" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+                                </button>
+                            </div>
+                            <!-- Strength Meter -->
+                            <div class="password-meter-wrap" id="passwordMeterWrap">
+                                <div class="meter-bar-track">
+                                    <div class="meter-bar" id="meterBar"></div>
+                                </div>
+                                <div class="meter-feedback">
+                                    <span id="meterLabel">Password strength</span>
+                                    <span id="meterHint">Enter at least 8 characters</span>
+                                </div>
+                            </div>
+                            <span class="field-error" id="regPasswordError"></span>
+                        </div>
+
+                        <!-- Terms Checkbox -->
+                        <div class="form-options">
+                            <label class="custom-checkbox">
+                                <input type="checkbox" id="regTerms" required>
+                                <span class="checkmark"></span>
+                                <span class="checkbox-label">
+                                    I agree to the <a href="#" class="inline-link" onclick="event.preventDefault(); alert('Terms of Service: CropSwitch provides agricultural decision models for advisory and informational purposes. Local ground validation is always recommended before field execution.');">Terms of Service</a> &amp; NASA Earth observation data usage guidelines.
+                                </span>
+                            </label>
+                            <span class="field-error" id="regTermsError"></span>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="submit-btn" id="signUpSubmitBtn">
+                            <span class="btn-text">Create Free Account</span>
+                            <span class="btn-spinner" aria-hidden="true"></span>
+                            <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- ==================== SOCIAL / SSO DIVIDER ==================== -->
+                <div class="auth-divider">
+                    <span>or continue with</span>
+                </div>
+
+                <!-- Social SSO Buttons -->
+                <div class="sso-buttons">
+                    <button type="button" class="sso-btn sso-google" id="ssoGoogleBtn">
+                        <svg width="18" height="18" viewBox="0 0 24 24">
+                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                        </svg>
+                        <span>Google Account</span>
+                    </button>
+
+                    <button type="button" class="sso-btn sso-agri" id="ssoAgriBtn">
+                        <span class="agri-icon">🏛️</span>
+                        <span>USDA / AgriPass ID</span>
+                    </button>
+                </div>
+
+                <!-- Privacy & Support note -->
+                <div class="form-footer-note">
+                    <p>🔒 256-bit SSL encrypted · Verified with USDA-NRCS & Open-Meteo telemetry</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ========== FORGOT PASSWORD MODAL (PURE FRONTEND) ========== -->
+    <div class="modal-backdrop" id="forgotModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" style="display: none;">
+        <div class="modal-card">
+            <button class="modal-close-btn" id="closeForgotBtn" aria-label="Close dialog">&times;</button>
+            <div class="modal-icon-badge">🔑</div>
+            <h3 id="modalTitle">Reset Farm Password</h3>
+            <p class="modal-sub">
+                Enter your registered grower or agronomist email. We'll send an instant magic link to restore your dashboard access.
+            </p>
+            <form id="forgotForm">
+                <div class="input-group">
+                    <label for="forgotEmail">Account Email</label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        <input type="email" id="forgotEmail" placeholder="e.g. marcus@cedarcreek.farm" required>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancel" id="cancelForgotBtn">Cancel</button>
+                    <button type="submit" class="submit-btn modal-submit" id="forgotSubmitBtn">
+                        <span>Send Reset Link</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- JS Logic -->
+    <script src="login.js"></script>
+</body>
+</html>
